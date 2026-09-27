@@ -38,7 +38,7 @@ export default function LoginPage() {
           </div>
 
           <div>
-            <h1>BhuDrishti</h1>
+            <h1>ORBITA</h1>
             <p>GEOSPATIAL INTELLIGENCE</p>
           </div>
         </div>

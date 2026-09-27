@@ -16,6 +16,7 @@ export default function ChangeDetectionPage() {
   const [aligned, setAligned] = useState(false);
   const [alignmentError, setAlignmentError] = useState(detection.alignmentError);
   const [showMask, setShowMask] = useState(false);
+  const [confirmedAt, setConfirmedAt] = useState<string | null>(null);
 
   return (
     <main className="min-h-screen bg-[#f4f8fc] text-[#16324f]">
@@ -422,19 +423,39 @@ export default function ChangeDetectionPage() {
                 </div>
 
                 {confirmed ? (
-                  <div className="mt-4 rounded-xl bg-[#edf8f4] p-4 text-center">
-                    <div className="text-xs font-semibold text-[#15906b]">
-                      Change Confirmed
-                    </div>
+                  <div className="mt-4 rounded-xl border border-[#bfe3d5] bg-[#edf8f4] p-4">
+  <div className="flex items-center justify-between">
+    <div>
+      <div className="text-xs font-semibold text-[#15906b]">
+        Change Confirmed
+      </div>
 
-                    <div className="mt-1 text-[9px] text-[#4e806f]">
-                      Construction detection recorded for review.
-                    </div>
-                  </div>
+      <div className="mt-1 text-[9px] text-[#4e806f]">
+        Construction — {detection.changes[0].confidence}% confidence
+      </div>
+    </div>
+
+    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#15906b]">
+      ✓
+    </div>
+  </div>
+
+  <div className="mt-3 border-t border-[#cfe7dc] pt-3 text-[9px] text-[#71869b]">
+    Confirmed at {confirmedAt}
+  </div>
+</div>
                 ) : (
                   <div className="mt-4 grid grid-cols-2 gap-2">
                     <button
-                      onClick={() => setConfirmed(true)}
+                      onClick={() => {
+  setConfirmed(true);
+  setConfirmedAt(
+    new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    })
+  );
+}}
                       className="rounded-lg bg-[#15906b] py-2.5 text-[10px] font-semibold text-white hover:bg-[#11845f]"
                     >
                       Confirm Change

@@ -1,7 +1,0 @@
-{
-  "/audit-trail/page": "app/audit-trail/page.js",
-  "/change-detection/page": "app/change-detection/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/map/page": "app/map/page.js",
-  "/search/page": "app/search/page.js"
-}

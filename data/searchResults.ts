@@ -1,16 +1,17 @@
 export const searchResults = [
   {
-    id: "site-001",
-    title: "New construction near river",
-    location: "Narmada Basin — Sector A",
-    coordinates: [22.72, 73.12],
-    date: "15 Jan 2026",
-    sensor: "Sentinel-2",
-    resolution: "10 m",
-    relevance: 94,
-    changeType: "Construction",
-    confidence: 91,
-  },
+  id: "site-001",
+  title: "New construction near river",
+  location: "Narmada Basin — Sector A",
+  coordinates: [22.72, 73.12],
+  date: "15 Jan 2026",
+  sensor: "Sentinel-2",
+  resolution: "10 m",
+  relevance: 94,
+  changeType: "Construction",
+  confidence: 91,
+  image: "/satellite/results/site-001.png",
+},
   {
     id: "site-002",
     title: "Construction activity",
@@ -22,6 +23,7 @@ export const searchResults = [
     relevance: 91,
     changeType: "Construction",
     confidence: 87,
+    image: "/satellite/results/site-002.png",
   },
   {
     id: "site-003",
@@ -34,6 +36,7 @@ export const searchResults = [
     relevance: 87,
     changeType: "Expansion",
     confidence: 84,
+    image: "/satellite/results/site-003.png",
   },
   {
     id: "site-004",
@@ -46,5 +49,6 @@ export const searchResults = [
     relevance: 84,
     changeType: "Construction",
     confidence: 82,
+    image: "/satellite/results/site-004.png",
   },
 ];

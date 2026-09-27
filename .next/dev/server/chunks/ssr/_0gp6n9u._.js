@@ -34,7 +34,7 @@ function SearchPage() {
                         children: "Semantic Retrieval"
                     }, void 0, false, {
                         fileName: "[project]/app/search/page.tsx",
-                        lineNumber: 23,
+                        lineNumber: 25,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -42,7 +42,7 @@ function SearchPage() {
                         children: "Search Satellite Imagery"
                     }, void 0, false, {
                         fileName: "[project]/app/search/page.tsx",
-                        lineNumber: 27,
+                        lineNumber: 29,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -50,13 +50,13 @@ function SearchPage() {
                         children: "Describe what you are looking for using natural language."
                     }, void 0, false, {
                         fileName: "[project]/app/search/page.tsx",
-                        lineNumber: 31,
+                        lineNumber: 33,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/search/page.tsx",
-                lineNumber: 22,
+                lineNumber: 24,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -73,7 +73,7 @@ function SearchPage() {
                                         children: "⌕"
                                     }, void 0, false, {
                                         fileName: "[project]/app/search/page.tsx",
-                                        lineNumber: 40,
+                                        lineNumber: 42,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -86,13 +86,13 @@ function SearchPage() {
                                         className: "w-full rounded-lg border border-[#26343e] bg-[#080d12] py-3 pl-11 pr-4 text-sm text-[#d7e1e5] outline-none placeholder:text-[#52616c] focus:border-[#66d9c4]"
                                     }, void 0, false, {
                                         fileName: "[project]/app/search/page.tsx",
-                                        lineNumber: 44,
+                                        lineNumber: 46,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/search/page.tsx",
-                                lineNumber: 39,
+                                lineNumber: 41,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -101,13 +101,13 @@ function SearchPage() {
                                 children: "Search"
                             }, void 0, false, {
                                 fileName: "[project]/app/search/page.tsx",
-                                lineNumber: 55,
+                                lineNumber: 57,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/search/page.tsx",
-                        lineNumber: 38,
+                        lineNumber: 40,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -118,7 +118,7 @@ function SearchPage() {
                                 children: "Try:"
                             }, void 0, false, {
                                 fileName: "[project]/app/search/page.tsx",
-                                lineNumber: 64,
+                                lineNumber: 66,
                                 columnNumber: 11
                             }, this),
                             [
@@ -131,19 +131,19 @@ function SearchPage() {
                                     children: example
                                 }, example, false, {
                                     fileName: "[project]/app/search/page.tsx",
-                                    lineNumber: 73,
+                                    lineNumber: 75,
                                     columnNumber: 13
                                 }, this))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/search/page.tsx",
-                        lineNumber: 63,
+                        lineNumber: 65,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/search/page.tsx",
-                lineNumber: 37,
+                lineNumber: 39,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -156,7 +156,7 @@ function SearchPage() {
                                 children: "Search Results"
                             }, void 0, false, {
                                 fileName: "[project]/app/search/page.tsx",
-                                lineNumber: 87,
+                                lineNumber: 89,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -167,13 +167,13 @@ function SearchPage() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/search/page.tsx",
-                                lineNumber: 91,
+                                lineNumber: 93,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/search/page.tsx",
-                        lineNumber: 86,
+                        lineNumber: 88,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -181,13 +181,13 @@ function SearchPage() {
                         children: "Ranked by semantic relevance"
                     }, void 0, false, {
                         fileName: "[project]/app/search/page.tsx",
-                        lineNumber: 96,
+                        lineNumber: 98,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/search/page.tsx",
-                lineNumber: 85,
+                lineNumber: 87,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -201,9 +201,13 @@ function SearchPage() {
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "relative mb-4 h-44 overflow-hidden rounded-lg border border-[#1d2a34] bg-[#111b20]",
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(SatellitePreview, {}, void 0, false, {
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                        src: result.image,
+                                        alt: result.title,
+                                        className: "absolute inset-0 h-full w-full object-cover"
+                                    }, void 0, false, {
                                         fileName: "[project]/app/search/page.tsx",
-                                        lineNumber: 121,
+                                        lineNumber: 123,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -214,7 +218,7 @@ function SearchPage() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/search/page.tsx",
-                                        lineNumber: 123,
+                                        lineNumber: 129,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -222,13 +226,13 @@ function SearchPage() {
                                         children: result.sensor
                                     }, void 0, false, {
                                         fileName: "[project]/app/search/page.tsx",
-                                        lineNumber: 127,
+                                        lineNumber: 133,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/search/page.tsx",
-                                lineNumber: 120,
+                                lineNumber: 122,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -241,7 +245,7 @@ function SearchPage() {
                                                 children: result.title
                                             }, void 0, false, {
                                                 fileName: "[project]/app/search/page.tsx",
-                                                lineNumber: 135,
+                                                lineNumber: 141,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -249,13 +253,13 @@ function SearchPage() {
                                                 children: result.location
                                             }, void 0, false, {
                                                 fileName: "[project]/app/search/page.tsx",
-                                                lineNumber: 139,
+                                                lineNumber: 145,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/search/page.tsx",
-                                        lineNumber: 134,
+                                        lineNumber: 140,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -263,13 +267,13 @@ function SearchPage() {
                                         children: result.changeType
                                     }, void 0, false, {
                                         fileName: "[project]/app/search/page.tsx",
-                                        lineNumber: 144,
+                                        lineNumber: 150,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/search/page.tsx",
-                                lineNumber: 133,
+                                lineNumber: 139,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -280,7 +284,7 @@ function SearchPage() {
                                         value: result.date
                                     }, void 0, false, {
                                         fileName: "[project]/app/search/page.tsx",
-                                        lineNumber: 150,
+                                        lineNumber: 156,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Meta, {
@@ -288,7 +292,7 @@ function SearchPage() {
                                         value: result.resolution
                                     }, void 0, false, {
                                         fileName: "[project]/app/search/page.tsx",
-                                        lineNumber: 151,
+                                        lineNumber: 157,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Meta, {
@@ -296,38 +300,38 @@ function SearchPage() {
                                         value: `${result.confidence}%`
                                     }, void 0, false, {
                                         fileName: "[project]/app/search/page.tsx",
-                                        lineNumber: 152,
+                                        lineNumber: 158,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/search/page.tsx",
-                                lineNumber: 149,
+                                lineNumber: 155,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, result.id, true, {
                         fileName: "[project]/app/search/page.tsx",
-                        lineNumber: 110,
+                        lineNumber: 112,
                         columnNumber: 13
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/app/search/page.tsx",
-                lineNumber: 101,
+                lineNumber: 103,
                 columnNumber: 7
             }, this),
             selectedId && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(SelectedResult, {
                 result: __TURBOPACK__imported__module__$5b$project$5d2f$data$2f$searchResults$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["searchResults"].find((item)=>item.id === selectedId)
             }, void 0, false, {
                 fileName: "[project]/app/search/page.tsx",
-                lineNumber: 161,
+                lineNumber: 167,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/search/page.tsx",
-        lineNumber: 20,
+        lineNumber: 22,
         columnNumber: 5
     }, this);
 }
@@ -339,7 +343,7 @@ function Meta({ label, value }) {
                 children: label
             }, void 0, false, {
                 fileName: "[project]/app/search/page.tsx",
-                lineNumber: 178,
+                lineNumber: 184,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -347,13 +351,13 @@ function Meta({ label, value }) {
                 children: value
             }, void 0, false, {
                 fileName: "[project]/app/search/page.tsx",
-                lineNumber: 181,
+                lineNumber: 187,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/search/page.tsx",
-        lineNumber: 177,
+        lineNumber: 183,
         columnNumber: 5
     }, this);
 }
@@ -371,7 +375,7 @@ function SelectedResult({ result }) {
                                 children: "Active Investigation"
                             }, void 0, false, {
                                 fileName: "[project]/app/search/page.tsx",
-                                lineNumber: 197,
+                                lineNumber: 203,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -379,13 +383,13 @@ function SelectedResult({ result }) {
                                 children: result.location
                             }, void 0, false, {
                                 fileName: "[project]/app/search/page.tsx",
-                                lineNumber: 201,
+                                lineNumber: 207,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/search/page.tsx",
-                        lineNumber: 196,
+                        lineNumber: 202,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -399,7 +403,7 @@ function SelectedResult({ result }) {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/search/page.tsx",
-                                lineNumber: 207,
+                                lineNumber: 213,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -407,19 +411,19 @@ function SelectedResult({ result }) {
                                 children: "Relevance"
                             }, void 0, false, {
                                 fileName: "[project]/app/search/page.tsx",
-                                lineNumber: 210,
+                                lineNumber: 216,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/search/page.tsx",
-                        lineNumber: 206,
+                        lineNumber: 212,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/search/page.tsx",
-                lineNumber: 195,
+                lineNumber: 201,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -430,7 +434,7 @@ function SelectedResult({ result }) {
                         value: `${result.coordinates[0]}° N`
                     }, void 0, false, {
                         fileName: "[project]/app/search/page.tsx",
-                        lineNumber: 217,
+                        lineNumber: 223,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Meta, {
@@ -438,7 +442,7 @@ function SelectedResult({ result }) {
                         value: `${result.coordinates[1]}° E`
                     }, void 0, false, {
                         fileName: "[project]/app/search/page.tsx",
-                        lineNumber: 218,
+                        lineNumber: 224,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Meta, {
@@ -446,7 +450,7 @@ function SelectedResult({ result }) {
                         value: result.sensor
                     }, void 0, false, {
                         fileName: "[project]/app/search/page.tsx",
-                        lineNumber: 219,
+                        lineNumber: 225,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Meta, {
@@ -454,19 +458,19 @@ function SelectedResult({ result }) {
                         value: result.changeType
                     }, void 0, false, {
                         fileName: "[project]/app/search/page.tsx",
-                        lineNumber: 220,
+                        lineNumber: 226,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/search/page.tsx",
-                lineNumber: 216,
+                lineNumber: 222,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/search/page.tsx",
-        lineNumber: 194,
+        lineNumber: 200,
         columnNumber: 5
     }, this);
 }
@@ -478,42 +482,42 @@ function SatellitePreview() {
                 className: "absolute inset-0 bg-[#17251f]"
             }, void 0, false, {
                 fileName: "[project]/app/search/page.tsx",
-                lineNumber: 229,
+                lineNumber: 235,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute -left-10 top-10 h-40 w-72 rotate-12 rounded-[50%] bg-[#24362b]"
             }, void 0, false, {
                 fileName: "[project]/app/search/page.tsx",
-                lineNumber: 232,
+                lineNumber: 238,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute right-[-30px] top-[-20px] h-52 w-44 -rotate-12 rounded-[45%] bg-[#1d3028]"
             }, void 0, false, {
                 fileName: "[project]/app/search/page.tsx",
-                lineNumber: 233,
+                lineNumber: 239,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute -right-8 top-[-30px] h-[130%] w-14 rotate-[25deg] rounded-[50%] bg-[#182f32]"
             }, void 0, false, {
                 fileName: "[project]/app/search/page.tsx",
-                lineNumber: 236,
+                lineNumber: 242,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute left-[-10%] top-[58%] h-[2px] w-[120%] rotate-[12deg] bg-[#667064]/50"
             }, void 0, false, {
                 fileName: "[project]/app/search/page.tsx",
-                lineNumber: 239,
+                lineNumber: 245,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute left-[25%] top-[-10%] h-[120%] w-[2px] rotate-[35deg] bg-[#6b7468]/40"
             }, void 0, false, {
                 fileName: "[project]/app/search/page.tsx",
-                lineNumber: 240,
+                lineNumber: 246,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -524,32 +528,32 @@ function SatellitePreview() {
                         className: "h-2.5 w-2.5 bg-[#9a9b82]"
                     }, i, false, {
                         fileName: "[project]/app/search/page.tsx",
-                        lineNumber: 245,
+                        lineNumber: 251,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/app/search/page.tsx",
-                lineNumber: 243,
+                lineNumber: 249,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "detection-pulse absolute left-[52%] top-[48%] h-3 w-3 rounded-full border border-[#66d9c4] bg-[#66d9c4]/30"
             }, void 0, false, {
                 fileName: "[project]/app/search/page.tsx",
-                lineNumber: 253,
+                lineNumber: 259,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute left-0 right-0 top-1/2 h-px bg-[#66d9c4]/20"
             }, void 0, false, {
                 fileName: "[project]/app/search/page.tsx",
-                lineNumber: 256,
+                lineNumber: 262,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/search/page.tsx",
-        lineNumber: 228,
+        lineNumber: 234,
         columnNumber: 5
     }, this);
 }
@@ -575,7 +579,8 @@ const searchResults = [
         resolution: "10 m",
         relevance: 94,
         changeType: "Construction",
-        confidence: 91
+        confidence: 91,
+        image: "/satellite/results/site-001.png"
     },
     {
         id: "site-002",
@@ -590,7 +595,8 @@ const searchResults = [
         resolution: "10 m",
         relevance: 91,
         changeType: "Construction",
-        confidence: 87
+        confidence: 87,
+        image: "/satellite/results/site-002.png"
     },
     {
         id: "site-003",
@@ -605,7 +611,8 @@ const searchResults = [
         resolution: "30 m",
         relevance: 87,
         changeType: "Expansion",
-        confidence: 84
+        confidence: 84,
+        image: "/satellite/results/site-003.png"
     },
     {
         id: "site-004",
@@ -620,7 +627,8 @@ const searchResults = [
         resolution: "10 m",
         relevance: 84,
         changeType: "Construction",
-        confidence: 82
+        confidence: 82,
+        image: "/satellite/results/site-004.png"
     }
 ];
 }),

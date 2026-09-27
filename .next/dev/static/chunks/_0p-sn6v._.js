@@ -1593,7 +1593,8 @@ const searchResults = [
         resolution: "10 m",
         relevance: 94,
         changeType: "Construction",
-        confidence: 91
+        confidence: 91,
+        image: "/satellite/results/site-001.png"
     },
     {
         id: "site-002",
@@ -1608,7 +1609,8 @@ const searchResults = [
         resolution: "10 m",
         relevance: 91,
         changeType: "Construction",
-        confidence: 87
+        confidence: 87,
+        image: "/satellite/results/site-002.png"
     },
     {
         id: "site-003",
@@ -1623,7 +1625,8 @@ const searchResults = [
         resolution: "30 m",
         relevance: 87,
         changeType: "Expansion",
-        confidence: 84
+        confidence: 84,
+        image: "/satellite/results/site-003.png"
     },
     {
         id: "site-004",
@@ -1638,7 +1641,8 @@ const searchResults = [
         resolution: "10 m",
         relevance: 84,
         changeType: "Construction",
-        confidence: 82
+        confidence: 82,
+        image: "/satellite/results/site-004.png"
     }
 ];
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {

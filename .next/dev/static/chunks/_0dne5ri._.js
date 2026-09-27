@@ -28,17 +28,18 @@ function ChangeDetectionPage() {
     const [aligning, setAligning] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [aligned, setAligned] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [alignmentError, setAlignmentError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(detection.alignmentError);
+    const [showMask, setShowMask] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
         className: "min-h-screen bg-[#f4f8fc] text-[#16324f]",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$layout$2f$Sidebar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/app/change-detection/page.tsx",
-                lineNumber: 25,
+                lineNumber: 22,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$layout$2f$Topbar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/app/change-detection/page.tsx",
-                lineNumber: 26,
+                lineNumber: 23,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -56,7 +57,7 @@ function ChangeDetectionPage() {
                                             children: "Analyst Workspace"
                                         }, void 0, false, {
                                             fileName: "[project]/app/change-detection/page.tsx",
-                                            lineNumber: 33,
+                                            lineNumber: 30,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -64,7 +65,7 @@ function ChangeDetectionPage() {
                                             children: "Change Detection"
                                         }, void 0, false, {
                                             fileName: "[project]/app/change-detection/page.tsx",
-                                            lineNumber: 37,
+                                            lineNumber: 34,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -72,13 +73,13 @@ function ChangeDetectionPage() {
                                             children: "Compare multi-temporal imagery and review detected changes."
                                         }, void 0, false, {
                                             fileName: "[project]/app/change-detection/page.tsx",
-                                            lineNumber: 41,
+                                            lineNumber: 38,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/change-detection/page.tsx",
-                                    lineNumber: 32,
+                                    lineNumber: 29,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -89,7 +90,7 @@ function ChangeDetectionPage() {
                                             children: "Selected Area"
                                         }, void 0, false, {
                                             fileName: "[project]/app/change-detection/page.tsx",
-                                            lineNumber: 47,
+                                            lineNumber: 44,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -97,19 +98,19 @@ function ChangeDetectionPage() {
                                             children: "Narmada Basin — Sector A"
                                         }, void 0, false, {
                                             fileName: "[project]/app/change-detection/page.tsx",
-                                            lineNumber: 51,
+                                            lineNumber: 48,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/change-detection/page.tsx",
-                                    lineNumber: 46,
+                                    lineNumber: 43,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/change-detection/page.tsx",
-                            lineNumber: 31,
+                            lineNumber: 28,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -124,7 +125,7 @@ function ChangeDetectionPage() {
                                                 children: "Area of Interest"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/change-detection/page.tsx",
-                                                lineNumber: 61,
+                                                lineNumber: 58,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -132,13 +133,13 @@ function ChangeDetectionPage() {
                                                 children: "Narmada Basin — Sector A"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/change-detection/page.tsx",
-                                                lineNumber: 65,
+                                                lineNumber: 62,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/change-detection/page.tsx",
-                                        lineNumber: 60,
+                                        lineNumber: 57,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(DateField, {
@@ -146,7 +147,7 @@ function ChangeDetectionPage() {
                                         value: "Jan 2024"
                                     }, void 0, false, {
                                         fileName: "[project]/app/change-detection/page.tsx",
-                                        lineNumber: 70,
+                                        lineNumber: 67,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(DateField, {
@@ -154,7 +155,7 @@ function ChangeDetectionPage() {
                                         value: "Jan 2026"
                                     }, void 0, false, {
                                         fileName: "[project]/app/change-detection/page.tsx",
-                                        lineNumber: 71,
+                                        lineNumber: 68,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -163,18 +164,18 @@ function ChangeDetectionPage() {
                                         children: compared ? "Compared" : "Compare"
                                     }, void 0, false, {
                                         fileName: "[project]/app/change-detection/page.tsx",
-                                        lineNumber: 73,
+                                        lineNumber: 70,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/change-detection/page.tsx",
-                                lineNumber: 59,
+                                lineNumber: 56,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/change-detection/page.tsx",
-                            lineNumber: 58,
+                            lineNumber: 55,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -190,7 +191,7 @@ function ChangeDetectionPage() {
                                                     children: "Temporal Comparison"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                    lineNumber: 86,
+                                                    lineNumber: 83,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -198,13 +199,13 @@ function ChangeDetectionPage() {
                                                     children: "Satellite imagery comparison for the selected AOI"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                    lineNumber: 90,
+                                                    lineNumber: 87,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/change-detection/page.tsx",
-                                            lineNumber: 85,
+                                            lineNumber: 82,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -216,7 +217,7 @@ function ChangeDetectionPage() {
                                                     children: "Before / After"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                    lineNumber: 96,
+                                                    lineNumber: 93,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -225,19 +226,19 @@ function ChangeDetectionPage() {
                                                     children: "Overlay"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                    lineNumber: 107,
+                                                    lineNumber: 104,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/change-detection/page.tsx",
-                                            lineNumber: 95,
+                                            lineNumber: 92,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/change-detection/page.tsx",
-                                    lineNumber: 84,
+                                    lineNumber: 81,
                                     columnNumber: 13
                                 }, this),
                                 viewMode === "side-by-side" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -249,7 +250,7 @@ function ChangeDetectionPage() {
                                             image: "/satellite/before/2021.png"
                                         }, void 0, false, {
                                             fileName: "[project]/app/change-detection/page.tsx",
-                                            lineNumber: 122,
+                                            lineNumber: 119,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ImagePanel, {
@@ -258,13 +259,13 @@ function ChangeDetectionPage() {
                                             image: "/satellite/after/2025.png"
                                         }, void 0, false, {
                                             fileName: "[project]/app/change-detection/page.tsx",
-                                            lineNumber: 128,
+                                            lineNumber: 125,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/change-detection/page.tsx",
-                                    lineNumber: 121,
+                                    lineNumber: 118,
                                     columnNumber: 15
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "relative h-[480px] overflow-hidden bg-[#dfe8ef]",
@@ -275,7 +276,7 @@ function ChangeDetectionPage() {
                                             className: "absolute inset-0 h-full w-full object-cover"
                                         }, void 0, false, {
                                             fileName: "[project]/app/change-detection/page.tsx",
-                                            lineNumber: 136,
+                                            lineNumber: 133,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -292,19 +293,19 @@ function ChangeDetectionPage() {
                                                 }
                                             }, void 0, false, {
                                                 fileName: "[project]/app/change-detection/page.tsx",
-                                                lineNumber: 146,
+                                                lineNumber: 143,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/change-detection/page.tsx",
-                                            lineNumber: 142,
+                                            lineNumber: 139,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "absolute left-1/2 top-0 h-full w-px bg-white shadow-md"
                                         }, void 0, false, {
                                             fileName: "[project]/app/change-detection/page.tsx",
-                                            lineNumber: 156,
+                                            lineNumber: 153,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -312,7 +313,7 @@ function ChangeDetectionPage() {
                                             children: "BEFORE / AFTER OVERLAY"
                                         }, void 0, false, {
                                             fileName: "[project]/app/change-detection/page.tsx",
-                                            lineNumber: 158,
+                                            lineNumber: 155,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -325,20 +326,20 @@ function ChangeDetectionPage() {
                                                             children: "Before"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                            lineNumber: 164,
+                                                            lineNumber: 161,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                             children: "After"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                            lineNumber: 165,
+                                                            lineNumber: 162,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                    lineNumber: 163,
+                                                    lineNumber: 160,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -350,19 +351,19 @@ function ChangeDetectionPage() {
                                                     className: "mt-3 w-full"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                    lineNumber: 168,
+                                                    lineNumber: 165,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/change-detection/page.tsx",
-                                            lineNumber: 162,
+                                            lineNumber: 159,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/change-detection/page.tsx",
-                                    lineNumber: 135,
+                                    lineNumber: 132,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -380,13 +381,13 @@ function ChangeDetectionPage() {
                                                             children: "Sentinel-2"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                            lineNumber: 184,
+                                                            lineNumber: 181,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                    lineNumber: 182,
+                                                    lineNumber: 179,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -398,19 +399,19 @@ function ChangeDetectionPage() {
                                                             children: "10 m"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                            lineNumber: 189,
+                                                            lineNumber: 186,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                    lineNumber: 187,
+                                                    lineNumber: 184,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/change-detection/page.tsx",
-                                            lineNumber: 181,
+                                            lineNumber: 178,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -426,25 +427,25 @@ function ChangeDetectionPage() {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                    lineNumber: 195,
+                                                    lineNumber: 192,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/change-detection/page.tsx",
-                                            lineNumber: 193,
+                                            lineNumber: 190,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/change-detection/page.tsx",
-                                    lineNumber: 180,
+                                    lineNumber: 177,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/change-detection/page.tsx",
-                            lineNumber: 83,
+                            lineNumber: 80,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -463,7 +464,7 @@ function ChangeDetectionPage() {
                                                             children: "Detected Changes"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                            lineNumber: 208,
+                                                            lineNumber: 205,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -471,13 +472,13 @@ function ChangeDetectionPage() {
                                                             children: "Candidate changes identified between the two dates."
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                            lineNumber: 212,
+                                                            lineNumber: 209,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                    lineNumber: 207,
+                                                    lineNumber: 204,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -485,13 +486,13 @@ function ChangeDetectionPage() {
                                                     children: compared ? "Analysis Complete" : "Awaiting Comparison"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                    lineNumber: 217,
+                                                    lineNumber: 214,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/change-detection/page.tsx",
-                                            lineNumber: 206,
+                                            lineNumber: 203,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -509,7 +510,7 @@ function ChangeDetectionPage() {
                                                                             children: change.type
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                                            lineNumber: 236,
+                                                                            lineNumber: 233,
                                                                             columnNumber: 25
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -520,13 +521,13 @@ function ChangeDetectionPage() {
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                                            lineNumber: 240,
+                                                                            lineNumber: 237,
                                                                             columnNumber: 25
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                                    lineNumber: 235,
+                                                                    lineNumber: 232,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -540,7 +541,7 @@ function ChangeDetectionPage() {
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                                            lineNumber: 246,
+                                                                            lineNumber: 243,
                                                                             columnNumber: 25
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -548,19 +549,19 @@ function ChangeDetectionPage() {
                                                                             children: "confidence"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                                            lineNumber: 250,
+                                                                            lineNumber: 247,
                                                                             columnNumber: 25
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                                    lineNumber: 245,
+                                                                    lineNumber: 242,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                            lineNumber: 234,
+                                                            lineNumber: 231,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -572,29 +573,29 @@ function ChangeDetectionPage() {
                                                                 }
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/change-detection/page.tsx",
-                                                                lineNumber: 257,
+                                                                lineNumber: 254,
                                                                 columnNumber: 23
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                            lineNumber: 256,
+                                                            lineNumber: 253,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, change.type, true, {
                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                    lineNumber: 230,
+                                                    lineNumber: 227,
                                                     columnNumber: 19
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/app/change-detection/page.tsx",
-                                            lineNumber: 228,
+                                            lineNumber: 225,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/change-detection/page.tsx",
-                                    lineNumber: 205,
+                                    lineNumber: 202,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -613,7 +614,7 @@ function ChangeDetectionPage() {
                                                                     children: "Image Registration"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                                    lineNumber: 273,
+                                                                    lineNumber: 270,
                                                                     columnNumber: 7
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -621,13 +622,13 @@ function ChangeDetectionPage() {
                                                                     children: "Spatial alignment between temporal images."
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                                    lineNumber: 277,
+                                                                    lineNumber: 274,
                                                                     columnNumber: 7
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                            lineNumber: 272,
+                                                            lineNumber: 269,
                                                             columnNumber: 5
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -635,13 +636,13 @@ function ChangeDetectionPage() {
                                                             children: aligned ? "Aligned" : "Review"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                            lineNumber: 282,
+                                                            lineNumber: 279,
                                                             columnNumber: 5
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                    lineNumber: 271,
+                                                    lineNumber: 268,
                                                     columnNumber: 3
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -655,7 +656,7 @@ function ChangeDetectionPage() {
                                                                     children: "Alignment error"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                                    lineNumber: 295,
+                                                                    lineNumber: 292,
                                                                     columnNumber: 7
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -666,13 +667,13 @@ function ChangeDetectionPage() {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                                    lineNumber: 299,
+                                                                    lineNumber: 296,
                                                                     columnNumber: 7
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                            lineNumber: 294,
+                                                            lineNumber: 291,
                                                             columnNumber: 5
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -689,19 +690,19 @@ function ChangeDetectionPage() {
                                                             children: aligning ? "Aligning Images..." : aligned ? "Images Aligned" : "Auto Align Images"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                            lineNumber: 308,
+                                                            lineNumber: 305,
                                                             columnNumber: 5
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                    lineNumber: 293,
+                                                    lineNumber: 290,
                                                     columnNumber: 3
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/change-detection/page.tsx",
-                                            lineNumber: 270,
+                                            lineNumber: 267,
                                             columnNumber: 1
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -715,7 +716,7 @@ function ChangeDetectionPage() {
                                                             children: "!"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                            lineNumber: 337,
+                                                            lineNumber: 334,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -725,7 +726,7 @@ function ChangeDetectionPage() {
                                                                     children: "Potential False Alarm"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                                    lineNumber: 342,
+                                                                    lineNumber: 339,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -733,19 +734,19 @@ function ChangeDetectionPage() {
                                                                     children: detection.falseAlarmReason
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                                    lineNumber: 346,
+                                                                    lineNumber: 343,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                            lineNumber: 341,
+                                                            lineNumber: 338,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                    lineNumber: 336,
+                                                    lineNumber: 333,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -756,7 +757,7 @@ function ChangeDetectionPage() {
                                                             children: "Risk Level"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                            lineNumber: 353,
+                                                            lineNumber: 350,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -764,13 +765,13 @@ function ChangeDetectionPage() {
                                                             children: detection.falseAlarmRisk
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                            lineNumber: 357,
+                                                            lineNumber: 354,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                    lineNumber: 352,
+                                                    lineNumber: 349,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -781,27 +782,28 @@ function ChangeDetectionPage() {
                                                             children: "Review Images"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                            lineNumber: 363,
+                                                            lineNumber: 360,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                            className: "rounded-lg border border-[#d7cdbb] bg-white py-2 text-[10px] font-semibold text-[#684f20]",
-                                                            children: "View Mask"
+                                                            onClick: ()=>setShowMask((value)=>!value),
+                                                            className: `rounded-lg border py-2 text-[10px] font-semibold ${showMask ? "border-[#b47a18] bg-[#fff1cf] text-[#8d651b]" : "border-[#d7cdbb] bg-white text-[#684f20]"}`,
+                                                            children: showMask ? "Hide Mask" : "View Mask"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                            lineNumber: 367,
+                                                            lineNumber: 364,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                    lineNumber: 362,
+                                                    lineNumber: 359,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/change-detection/page.tsx",
-                                            lineNumber: 335,
+                                            lineNumber: 332,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -812,7 +814,7 @@ function ChangeDetectionPage() {
                                                     children: "Analyst Decision"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                    lineNumber: 375,
+                                                    lineNumber: 379,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -820,7 +822,7 @@ function ChangeDetectionPage() {
                                                     children: "Record the review outcome for this detection."
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                    lineNumber: 379,
+                                                    lineNumber: 383,
                                                     columnNumber: 17
                                                 }, this),
                                                 confirmed ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -831,7 +833,7 @@ function ChangeDetectionPage() {
                                                             children: "Change Confirmed"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                            lineNumber: 385,
+                                                            lineNumber: 389,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -839,13 +841,13 @@ function ChangeDetectionPage() {
                                                             children: "Construction detection recorded for review."
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                            lineNumber: 389,
+                                                            lineNumber: 393,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                    lineNumber: 384,
+                                                    lineNumber: 388,
                                                     columnNumber: 19
                                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "mt-4 grid grid-cols-2 gap-2",
@@ -856,7 +858,7 @@ function ChangeDetectionPage() {
                                                             children: "Confirm Change"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                            lineNumber: 395,
+                                                            lineNumber: 399,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -864,52 +866,52 @@ function ChangeDetectionPage() {
                                                             children: "Reject"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/change-detection/page.tsx",
-                                                            lineNumber: 402,
+                                                            lineNumber: 406,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/change-detection/page.tsx",
-                                                    lineNumber: 394,
+                                                    lineNumber: 398,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/change-detection/page.tsx",
-                                            lineNumber: 374,
+                                            lineNumber: 378,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/change-detection/page.tsx",
-                                    lineNumber: 268,
+                                    lineNumber: 265,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/change-detection/page.tsx",
-                            lineNumber: 203,
+                            lineNumber: 200,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/change-detection/page.tsx",
-                    lineNumber: 29,
+                    lineNumber: 26,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/change-detection/page.tsx",
-                lineNumber: 28,
+                lineNumber: 25,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/change-detection/page.tsx",
-        lineNumber: 24,
+        lineNumber: 21,
         columnNumber: 5
     }, this);
 }
-_s(ChangeDetectionPage, "UScE5DwmhEaWsrBnUmg1Yz66V5k=");
+_s(ChangeDetectionPage, "hrukdXmPcYvkgRDKQkV8Fv7kOqI=");
 _c = ChangeDetectionPage;
 /* ----------------------------- */ /* Date field                     */ /* ----------------------------- */ function DateField({ label, value }) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -919,7 +921,7 @@ _c = ChangeDetectionPage;
                 children: label
             }, void 0, false, {
                 fileName: "[project]/app/change-detection/page.tsx",
-                lineNumber: 429,
+                lineNumber: 433,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -927,13 +929,13 @@ _c = ChangeDetectionPage;
                 children: value
             }, void 0, false, {
                 fileName: "[project]/app/change-detection/page.tsx",
-                lineNumber: 433,
+                lineNumber: 437,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/change-detection/page.tsx",
-        lineNumber: 428,
+        lineNumber: 432,
         columnNumber: 5
     }, this);
 }
@@ -948,7 +950,7 @@ _c1 = DateField;
                 className: "absolute inset-0 h-full w-full object-cover"
             }, void 0, false, {
                 fileName: "[project]/app/change-detection/page.tsx",
-                lineNumber: 455,
+                lineNumber: 459,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -956,7 +958,7 @@ _c1 = DateField;
                 children: label
             }, void 0, false, {
                 fileName: "[project]/app/change-detection/page.tsx",
-                lineNumber: 461,
+                lineNumber: 465,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -967,7 +969,7 @@ _c1 = DateField;
                         children: "Acquisition"
                     }, void 0, false, {
                         fileName: "[project]/app/change-detection/page.tsx",
-                        lineNumber: 466,
+                        lineNumber: 470,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -975,13 +977,13 @@ _c1 = DateField;
                         children: date
                     }, void 0, false, {
                         fileName: "[project]/app/change-detection/page.tsx",
-                        lineNumber: 470,
+                        lineNumber: 474,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/change-detection/page.tsx",
-                lineNumber: 465,
+                lineNumber: 469,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -989,13 +991,13 @@ _c1 = DateField;
                 children: "Sentinel-2 · 10 m"
             }, void 0, false, {
                 fileName: "[project]/app/change-detection/page.tsx",
-                lineNumber: 475,
+                lineNumber: 479,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/change-detection/page.tsx",
-        lineNumber: 454,
+        lineNumber: 458,
         columnNumber: 5
     }, this);
 }

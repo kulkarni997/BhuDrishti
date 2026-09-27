@@ -9,16 +9,13 @@ export default function ChangeDetectionPage() {
   const detection = changeDetections[0];
 
   const [compared, setCompared] = useState(false);
-  const [viewMode, setViewMode] = useState<"side-by-side" | "overlay">(
-    "side-by-side"
-  );
+  const [viewMode, setViewMode] = useState<"side-by-side" | "overlay">("side-by-side");
   const [opacity, setOpacity] = useState(50);
   const [confirmed, setConfirmed] = useState(false);
   const [aligning, setAligning] = useState(false);
-const [aligned, setAligned] = useState(false);
-const [alignmentError, setAlignmentError] = useState(
-  detection.alignmentError
-);
+  const [aligned, setAligned] = useState(false);
+  const [alignmentError, setAlignmentError] = useState(detection.alignmentError);
+  const [showMask, setShowMask] = useState(false);
 
   return (
     <main className="min-h-screen bg-[#f4f8fc] text-[#16324f]">
@@ -364,11 +361,55 @@ const [alignmentError, setAlignmentError] = useState(
                     Review Images
                   </button>
 
-                  <button className="rounded-lg border border-[#d7cdbb] bg-white py-2 text-[10px] font-semibold text-[#684f20]">
-                    View Mask
-                  </button>
+                  <button
+  onClick={() => setShowMask((value) => !value)}
+  className={`rounded-lg border py-2 text-[10px] font-semibold ${
+    showMask
+      ? "border-[#b47a18] bg-[#fff1cf] text-[#8d651b]"
+      : "border-[#d7cdbb] bg-white text-[#684f20]"
+  }`}
+>
+  {showMask ? "Hide Mask" : "View Mask"}
+</button>
                 </div>
               </div>
+
+              {showMask && (
+  <div className="overflow-hidden rounded-2xl border border-[#d7cdbb] bg-white shadow-sm animate-fade-up">
+    <div className="flex items-center justify-between border-b border-[#eadfca] px-5 py-4">
+      <div>
+        <div className="text-xs font-semibold text-[#684f20]">
+          Change Detection Mask
+        </div>
+
+        <div className="mt-1 text-[10px] text-[#806d4a]">
+          Candidate change regions identified for analyst review.
+        </div>
+      </div>
+
+      <div className="rounded-full bg-[#fff1cf] px-2.5 py-1 text-[9px] font-semibold text-[#b47a18]">
+        Review Required
+      </div>
+    </div>
+
+    <div className="relative h-64 overflow-hidden bg-[#182b32]">
+      <img
+        src="/satellite/after/2025.png"
+        alt="Satellite change detection mask"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+
+      {/* Simulated detection regions */}
+      <div className="absolute left-[42%] top-[35%] h-16 w-24 rounded border-2 border-[#f0b429] bg-[#f0b429]/25" />
+
+      <div className="absolute left-[58%] top-[54%] h-10 w-20 rounded border-2 border-[#e3a52f] bg-[#e3a52f]/20" />
+
+      <div className="absolute left-4 bottom-4 rounded-md bg-[#16324f]/90 px-3 py-2 text-[9px] text-white backdrop-blur">
+        Highlighted regions indicate detected change
+      </div>
+    </div>
+  </div>
+)}
 
               {/* Decision */}
               <div className="rounded-2xl border border-[#dce6f0] bg-white p-5">

@@ -70,38 +70,38 @@ export default function AuditTrailPage() {
   });
 
   return (
-    <main className="min-h-screen bg-[#f4f8fc] text-[#16324f]">
+    <main className="min-h-screen bg-[#061522] text-[#e7f1f8]">
       <Sidebar />
       <Topbar />
 
-      <section className="ml-64 pt-20">
+      <section className="ml-64 pt-[72px]">
         <div className="p-7 animate-fade-up">
 
           {/* Header */}
           <div className="mb-6">
-            <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#1677e8]">
+            <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8ed5ff]">
               Investigation Records
             </div>
 
-            <h1 className="mt-2 text-2xl font-semibold tracking-tight text-[#16324f]">
+            <h1 className="mt-2 text-2xl font-semibold tracking-tight text-[#e7f1f8]">
               Audit Trail
             </h1>
 
-            <p className="mt-2 text-sm text-[#71869b]">
+            <p className="mt-2 text-sm text-[#6f8da3]">
               Review analyst actions and investigation activity.
             </p>
           </div>
 
           {/* Active Investigation */}
-          <div className="mb-5 rounded-xl border border-[#cfe0f0] bg-white px-5 py-4">
+          <div className="mb-5 rounded-xl border border-[rgba(125,171,204,0.22)] bg-[#0b2032] px-5 py-4">
             <div className="flex items-center justify-between">
 
               <div>
-                <div className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#1677e8]">
+                <div className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#8ed5ff]">
                   Active Investigation
                 </div>
 
-                <div className="mt-1 text-sm font-semibold text-[#16324f]">
+                <div className="mt-1 text-sm font-semibold text-[#e7f1f8]">
                   {investigation?.location ||
                     "Narmada Basin — Sector A"}
                 </div>
@@ -132,17 +132,17 @@ export default function AuditTrailPage() {
           </div>
 
           {/* Filters */}
-          <section className="mb-5 rounded-2xl border border-[#dce6f0] bg-white p-5">
+          <section className="mb-5 rounded-2xl border border-[rgba(125,171,204,0.16)] bg-[#0b2032] p-5 shadow-[0_14px_34px_rgba(0,0,0,0.14)]">
 
             <div className="flex items-end gap-4">
 
               <div className="flex-1">
-                <label className="mb-2 block text-[9px] font-semibold uppercase tracking-[0.18em] text-[#71869b]">
+                <label className="mb-2 block text-[9px] font-semibold uppercase tracking-[0.18em] text-[#6f8da3]">
                   Search Audit Logs
                 </label>
 
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[#8ba0b4]">
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[#58788d]">
                     ⌕
                   </span>
 
@@ -150,13 +150,13 @@ export default function AuditTrailPage() {
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Search actions or details..."
-                    className="h-11 w-full rounded-lg border border-[#d8e4ef] bg-[#f9fbfd] pl-9 pr-4 text-xs text-[#496784] outline-none placeholder:text-[#9aabba] focus:border-[#8bb9e8]"
+                    className="h-11 w-full rounded-lg border border-[rgba(125,171,204,0.22)] bg-[#071a29] pl-9 pr-4 text-xs text-[#bcd3e1] outline-none placeholder:text-[#527187] focus:border-[#55b8f4]/60 focus:ring-1 focus:ring-[#55b8f4]/15"
                   />
                 </div>
               </div>
 
               <div className="w-48">
-                <label className="mb-2 block text-[9px] font-semibold uppercase tracking-[0.18em] text-[#71869b]">
+                <label className="mb-2 block text-[9px] font-semibold uppercase tracking-[0.18em] text-[#6f8da3]">
                   Action
                 </label>
 
@@ -165,7 +165,7 @@ export default function AuditTrailPage() {
                   onChange={(e) =>
                     setActionFilter(e.target.value)
                   }
-                  className="h-11 w-full rounded-lg border border-[#d8e4ef] bg-[#f9fbfd] px-3 text-xs text-[#496784] outline-none"
+                  className="h-11 w-full rounded-lg border border-[rgba(125,171,204,0.22)] bg-[#071a29] px-3 text-xs text-[#bcd3e1] outline-none"
                 >
                   <option>All Actions</option>
                   <option>Search</option>
@@ -180,7 +180,7 @@ export default function AuditTrailPage() {
                   setSearch("");
                   setActionFilter("All Actions");
                 }}
-                className="h-11 rounded-lg border border-[#cbdbea] bg-white px-5 text-[10px] font-semibold text-[#496784] hover:bg-[#f5f9fd]"
+                className="h-11 rounded-lg border border-[rgba(125,171,204,0.22)] bg-[#0b2032] px-5 text-[10px] font-semibold text-[#bcd3e1] hover:bg-[#102b3c]"
               >
                 Clear
               </button>
@@ -217,21 +217,21 @@ export default function AuditTrailPage() {
           </div>
 
           {/* Activity Table */}
-          <section className="overflow-hidden rounded-2xl border border-[#dce6f0] bg-white">
+          <section className="overflow-hidden rounded-2xl border border-[rgba(125,171,204,0.16)] bg-[#0b2032]">
 
-            <div className="flex items-center justify-between border-b border-[#dce6f0] px-5 py-4">
+            <div className="flex items-center justify-between border-b border-[rgba(125,171,204,0.16)] px-5 py-4">
 
               <div>
-                <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#71869b]">
+                <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#6f8da3]">
                   Activity Log
                 </div>
 
-                <div className="mt-1 text-sm font-semibold text-[#16324f]">
+                <div className="mt-1 text-sm font-semibold text-[#e7f1f8]">
                   Investigation History
                 </div>
               </div>
 
-              <div className="rounded-md bg-[#f2f7fc] px-3 py-1.5 text-[9px] font-semibold text-[#71869b]">
+              <div className="rounded-md bg-[#102b3c] px-3 py-1.5 text-[9px] font-semibold text-[#6f8da3]">
                 {filteredLogs.length} events
               </div>
 
@@ -241,25 +241,25 @@ export default function AuditTrailPage() {
               <table className="w-full border-collapse">
 
                 <thead>
-                  <tr className="border-b border-[#e3eaf1] bg-[#f9fbfd]">
+                  <tr className="border-b border-[rgba(125,171,204,0.12)] bg-[#071a29]">
 
-                    <th className="px-5 py-3 text-left text-[9px] font-semibold uppercase tracking-wider text-[#8a9bac]">
+                    <th className="px-5 py-3 text-left text-[9px] font-semibold uppercase tracking-wider text-[#58788d]">
                       Time
                     </th>
 
-                    <th className="px-5 py-3 text-left text-[9px] font-semibold uppercase tracking-wider text-[#8a9bac]">
+                    <th className="px-5 py-3 text-left text-[9px] font-semibold uppercase tracking-wider text-[#58788d]">
                       User
                     </th>
 
-                    <th className="px-5 py-3 text-left text-[9px] font-semibold uppercase tracking-wider text-[#8a9bac]">
+                    <th className="px-5 py-3 text-left text-[9px] font-semibold uppercase tracking-wider text-[#58788d]">
                       Action
                     </th>
 
-                    <th className="px-5 py-3 text-left text-[9px] font-semibold uppercase tracking-wider text-[#8a9bac]">
+                    <th className="px-5 py-3 text-left text-[9px] font-semibold uppercase tracking-wider text-[#58788d]">
                       Details
                     </th>
 
-                    <th className="px-5 py-3 text-right text-[9px] font-semibold uppercase tracking-wider text-[#8a9bac]">
+                    <th className="px-5 py-3 text-right text-[9px] font-semibold uppercase tracking-wider text-[#58788d]">
                       Status
                     </th>
 
@@ -270,21 +270,21 @@ export default function AuditTrailPage() {
                   {filteredLogs.map((log) => (
                     <tr
                       key={log.id}
-                      className="border-b border-[#edf1f5] last:border-0 hover:bg-[#fbfdff]"
+                      className="border-b border-[rgba(125,171,204,0.10)] last:border-0 hover:bg-[#102b3c]"
                     >
 
-                      <td className="px-5 py-4 text-xs font-medium text-[#496784]">
+                      <td className="px-5 py-4 text-xs font-medium text-[#bcd3e1]">
                         {log.time}
                       </td>
 
                       <td className="px-5 py-4">
                         <div className="flex items-center gap-2">
 
-                          <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#eaf3ff] text-[9px] font-semibold text-[#1677e8]">
+                          <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#55b8f4]/10 text-[9px] font-semibold text-[#8ed5ff]">
                             A
                           </div>
 
-                          <span className="text-xs text-[#496784]">
+                          <span className="text-xs text-[#bcd3e1]">
                             {log.user}
                           </span>
 
@@ -295,12 +295,12 @@ export default function AuditTrailPage() {
                         <ActionBadge action={log.action} />
                       </td>
 
-                      <td className="max-w-[500px] px-5 py-4 text-xs text-[#496784]">
+                      <td className="max-w-[500px] px-5 py-4 text-xs text-[#bcd3e1]">
                         {log.details}
                       </td>
 
                       <td className="px-5 py-4 text-right">
-                        <span className="rounded-full bg-[#e7f7f1] px-2.5 py-1 text-[8px] font-semibold text-[#15936d]">
+                        <span className="rounded-full bg-[#39c99a]/10 px-2.5 py-1 text-[8px] font-semibold text-[#39c99a]">
                           Recorded
                         </span>
                       </td>
@@ -312,7 +312,7 @@ export default function AuditTrailPage() {
                     <tr>
                       <td
                         colSpan={5}
-                        className="px-5 py-12 text-center text-xs text-[#8a9bac]"
+                        className="px-5 py-12 text-center text-xs text-[#58788d]"
                       >
                         No audit events match the selected filters.
                       </td>
@@ -325,18 +325,18 @@ export default function AuditTrailPage() {
           </section>
 
           {/* Provenance */}
-          <div className="mt-5 flex items-center gap-3 rounded-xl border border-[#dce6f0] bg-white px-5 py-4">
+          <div className="mt-5 flex items-center gap-3 rounded-xl border border-[rgba(57,201,154,0.18)] bg-[#0b2032] px-5 py-4">
 
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#eaf3ff] text-[#1677e8]">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#55b8f4]/10 text-[#8ed5ff]">
               ✓
             </div>
 
             <div>
-              <div className="text-[10px] font-semibold text-[#16324f]">
+              <div className="text-[10px] font-semibold text-[#e7f1f8]">
                 Investigation provenance maintained
               </div>
 
-              <div className="mt-0.5 text-[9px] text-[#71869b]">
+              <div className="mt-0.5 text-[9px] text-[#6f8da3]">
                 Search, temporal comparison, review and analyst
                 confirmation are recorded in sequence.
               </div>
@@ -359,11 +359,11 @@ function Meta({
 }) {
   return (
     <div className="text-right">
-      <div className="text-[8px] font-semibold uppercase tracking-wider text-[#8a9bac]">
+      <div className="text-[8px] font-semibold uppercase tracking-wider text-[#58788d]">
         {label}
       </div>
 
-      <div className="mt-1 text-[10px] font-semibold text-[#496784]">
+      <div className="mt-1 text-[10px] font-semibold text-[#bcd3e1]">
         {value}
       </div>
     </div>
@@ -382,23 +382,23 @@ function SummaryCard({
   status?: boolean;
 }) {
   return (
-    <div className="rounded-xl border border-[#dce6f0] bg-white p-5">
+    <div className="rounded-xl border border-[rgba(125,171,204,0.16)] bg-[#0b2032] p-5 shadow-[0_14px_34px_rgba(0,0,0,0.14)]">
 
-      <div className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#71869b]">
+      <div className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#6f8da3]">
         {label}
       </div>
 
       <div className="mt-2 flex items-center gap-2">
         {status && (
-          <span className="h-2 w-2 rounded-full bg-[#18a67a]" />
+          <span className="h-2 w-2 rounded-full bg-[#39c99a]" />
         )}
 
-        <span className="text-xl font-semibold text-[#16324f]">
+        <span className="text-xl font-semibold text-[#e7f1f8]">
           {value}
         </span>
       </div>
 
-      <div className="mt-1 text-[9px] text-[#8a9bac]">
+      <div className="mt-1 text-[9px] text-[#58788d]">
         {detail}
       </div>
 
@@ -412,19 +412,19 @@ function ActionBadge({
   action: string;
 }) {
   const styles: Record<string, string> = {
-    Search: "bg-[#eaf3ff] text-[#1677e8]",
+    Search: "bg-[#55b8f4]/10 text-[#8ed5ff]",
     "Change Detection":
-      "bg-[#f0ebff] text-[#7454c6]",
+      "bg-[#8d6fe8]/10 text-[#b7a1ff]",
     "Viewed Result":
-      "bg-[#eef7f5] text-[#17866c]",
+      "bg-[#39c99a]/10 text-[#49c9aa]",
     Confirmed:
-      "bg-[#e7f7f1] text-[#15936d]",
+      "bg-[#39c99a]/10 text-[#39c99a]",
   };
 
   return (
     <span
       className={`rounded-md px-2.5 py-1 text-[9px] font-semibold ${
-        styles[action] || "bg-[#f1f4f7] text-[#64788c]"
+        styles[action] || "bg-[#294456] text-[#7893a5]"
       }`}
     >
       {action}

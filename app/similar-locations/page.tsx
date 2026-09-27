@@ -48,43 +48,43 @@ export default function SimilarLocationsPage() {
   );
 
   return (
-    <main className="min-h-screen bg-[#f4f8fc] text-[#16324f]">
+    <main className="min-h-screen bg-[#061522] text-[#e7f1f8]">
       <Sidebar />
       <Topbar />
 
-      <section className="ml-64 pt-20">
+      <section className="ml-64 pt-[72px]">
         <div className="p-7 animate-fade-up">
 
           {/* Header */}
           <div className="mb-7">
-            <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#1677e8]">
+            <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8ed5ff]">
               Pattern Discovery
             </div>
 
-            <h1 className="mt-2 text-2xl font-semibold tracking-tight text-[#16324f]">
+            <h1 className="mt-2 text-2xl font-semibold tracking-tight text-[#e7f1f8]">
               Similar Location Discovery
             </h1>
 
-            <p className="mt-2 text-sm text-[#71869b]">
+            <p className="mt-2 text-sm text-[#6f8da3]">
               Find locations with similar visual and contextual characteristics.
             </p>
           </div>
 
           {/* Active Investigation */}
-          <section className="rounded-2xl border border-[#dce6f0] bg-white p-5">
+          <section className="rounded-2xl border border-[rgba(125,171,204,0.16)] bg-[#0b2032] p-5 shadow-[0_14px_34px_rgba(0,0,0,0.14)]">
 
             <div className="flex items-start justify-between">
 
               <div>
-                <div className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#1677e8]">
+                <div className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#8ed5ff]">
                   Active Investigation
                 </div>
 
-                <h2 className="mt-1 text-sm font-semibold text-[#16324f]">
+                <h2 className="mt-1 text-sm font-semibold text-[#e7f1f8]">
                   {location}
                 </h2>
 
-                <div className="mt-1 text-[10px] text-[#71869b]">
+                <div className="mt-1 text-[10px] text-[#6f8da3]">
                   {changeType} detection · {confidence}% confidence
                 </div>
               </div>
@@ -92,7 +92,7 @@ export default function SimilarLocationsPage() {
               <button
                 onClick={handleFindSimilar}
                 disabled={searching}
-                className="rounded-lg bg-[#1677e8] px-5 py-2.5 text-[10px] font-semibold text-white hover:bg-[#1268cf]"
+                className="rounded-lg bg-[#1677aa] px-5 py-2.5 text-[10px] font-semibold text-white hover:bg-[#1d8fc8]"
               >
                 {searching
                   ? "Finding Similar Locations..."
@@ -101,7 +101,7 @@ export default function SimilarLocationsPage() {
 
             </div>
 
-            <div className="mt-5 grid grid-cols-4 gap-3 border-t border-[#e3eaf1] pt-4">
+            <div className="mt-5 grid grid-cols-4 gap-3 border-t border-[rgba(125,171,204,0.12)] pt-4">
 
               <Meta
                 label="Location"
@@ -130,16 +130,16 @@ export default function SimilarLocationsPage() {
           <div className="mt-7 flex items-center justify-between">
 
             <div>
-              <div className="text-sm font-semibold text-[#16324f]">
+              <div className="text-sm font-semibold text-[#e7f1f8]">
                 Similar Locations
               </div>
 
-              <div className="mt-1 text-[10px] text-[#71869b]">
+              <div className="mt-1 text-[10px] text-[#6f8da3]">
                 Ranked by similarity to the active investigation.
               </div>
             </div>
 
-            <div className="text-[10px] font-semibold uppercase tracking-wider text-[#71869b]">
+            <div className="text-[10px] font-semibold uppercase tracking-wider text-[#6f8da3]">
               {searched ? "Analysis complete" : "Searching"}
             </div>
 
@@ -157,15 +157,15 @@ export default function SimilarLocationsPage() {
                 <button
                   key={result.id}
                   onClick={() => setSelectedId(result.id)}
-                  className={`group rounded-2xl border bg-white p-4 text-left shadow-sm transition-all ${
+                  className={`group rounded-2xl border bg-[#0b2032] p-4 text-left shadow-sm transition-all ${
                     selected
                       ? "border-[#1677e8] shadow-md"
-                      : "border-[#dce6f0] hover:-translate-y-0.5 hover:border-[#b8cee3] hover:shadow-md"
+                      : "border-[rgba(125,171,204,0.16)] hover:-translate-y-0.5 hover:border-[#55b8f4]/40 hover:shadow-[0_12px_28px_rgba(0,0,0,0.22)]"
                   }`}
                 >
 
                   {/* Image */}
-                  <div className="relative mb-4 h-52 overflow-hidden rounded-xl border border-[#dce6f0] bg-[#e9eff4]">
+                  <div className="relative mb-4 h-52 overflow-hidden rounded-xl border border-[rgba(125,171,204,0.16)] bg-[#071a29] shadow-inner">
 
                     <img
                       src="/satellite/results/site-001.png"
@@ -173,11 +173,11 @@ export default function SimilarLocationsPage() {
                       className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                     />
 
-                    <div className="absolute right-3 top-3 rounded-md border border-white/40 bg-[#16324f]/90 px-2.5 py-1.5 text-[10px] font-semibold text-white backdrop-blur">
+                    <div className="absolute right-3 top-3 rounded-md border border-white/20 bg-[#061522]/90 px-2.5 py-1.5 text-[10px] font-semibold text-white backdrop-blur">
                       {result.similarity}% similar
                     </div>
 
-                    <div className="absolute bottom-3 left-3 rounded-md border border-white/30 bg-[#16324f]/90 px-2.5 py-1 text-[9px] font-medium text-white backdrop-blur">
+                    <div className="absolute bottom-3 left-3 rounded-md border border-white/15 bg-[#061522]/90 px-2.5 py-1 text-[9px] font-medium text-white backdrop-blur">
                       {result.sensor}
                     </div>
 
@@ -187,24 +187,24 @@ export default function SimilarLocationsPage() {
                   <div className="flex items-start justify-between gap-4">
 
                     <div>
-                      <h3 className="text-sm font-semibold text-[#16324f]">
+                      <h3 className="text-sm font-semibold text-[#e7f1f8]">
                         {result.location}
                       </h3>
 
-                      <p className="mt-1 text-[10px] text-[#71869b]">
+                      <p className="mt-1 text-[10px] text-[#6f8da3]">
                         Coordinates: {result.coordinates[0]}° N,{" "}
                         {result.coordinates[1]}° E
                       </p>
                     </div>
 
-                    <span className="shrink-0 rounded-md border border-[#bde5d6] bg-[#effaf6] px-2 py-1 text-[9px] font-semibold text-[#12845f]">
+                    <span className="shrink-0 rounded-md border border-[rgba(57,201,154,0.25)] bg-[#39c99a]/10 px-2 py-1 text-[9px] font-semibold text-[#39c99a]">
                       Similar
                     </span>
 
                   </div>
 
                   {/* Metadata */}
-                  <div className="mt-4 grid grid-cols-2 gap-3 border-t border-[#e3eaf1] pt-3">
+                  <div className="mt-4 grid grid-cols-2 gap-3 border-t border-[rgba(125,171,204,0.12)] pt-3">
 
                     <Meta
                       label="Observation Date"
@@ -225,26 +225,26 @@ export default function SimilarLocationsPage() {
 
           {/* Selected Location */}
           {selectedLocation && (
-            <section className="mt-6 rounded-2xl border border-[#cfe0f0] bg-white p-5 shadow-sm animate-fade-up">
+            <section className="mt-6 rounded-2xl border border-[rgba(125,171,204,0.22)] bg-[#0b2032] p-5 shadow-[0_14px_34px_rgba(0,0,0,0.16)] animate-fade-up">
 
               <div className="flex items-center justify-between">
 
                 <div>
-                  <div className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#1677e8]">
+                  <div className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#8ed5ff]">
                     Selected Similar Location
                   </div>
 
-                  <h2 className="mt-1 text-sm font-semibold text-[#16324f]">
+                  <h2 className="mt-1 text-sm font-semibold text-[#e7f1f8]">
                     {selectedLocation.location}
                   </h2>
                 </div>
 
                 <div className="text-right">
-                  <div className="text-lg font-semibold text-[#18a67a]">
+                  <div className="text-lg font-semibold text-[#39c99a]">
                     {selectedLocation.similarity}%
                   </div>
 
-                  <div className="text-[9px] font-semibold uppercase tracking-wider text-[#8a9bac]">
+                  <div className="text-[9px] font-semibold uppercase tracking-wider text-[#58788d]">
                     Similarity
                   </div>
                 </div>
@@ -275,11 +275,11 @@ export default function SimilarLocationsPage() {
 
               </div>
 
-              <div className="mt-5 flex justify-end border-t border-[#e3eaf1] pt-4">
+              <div className="mt-5 flex justify-end border-t border-[rgba(125,171,204,0.12)] pt-4">
 
                 <button
                   onClick={() => router.push("/map")}
-                  className="rounded-lg bg-[#1677e8] px-5 py-2.5 text-[10px] font-semibold text-white hover:bg-[#1268cf]"
+                  className="rounded-lg bg-[#1677aa] px-5 py-2.5 text-[10px] font-semibold text-white hover:bg-[#1d8fc8]"
                 >
                   View on Map →
                 </button>
@@ -304,11 +304,11 @@ function Meta({
 }) {
   return (
     <div>
-      <div className="text-[8px] font-semibold uppercase tracking-wider text-[#8a9bac]">
+      <div className="text-[8px] font-semibold uppercase tracking-wider text-[#58788d]">
         {label}
       </div>
 
-      <div className="mt-1 text-[10px] font-medium text-[#496784]">
+      <div className="mt-1 text-[10px] font-medium text-[#bcd3e1]">
         {value}
       </div>
     </div>

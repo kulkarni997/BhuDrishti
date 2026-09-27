@@ -2,522 +2,484 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { searchResults } from "@/data/searchResults";
-import { similarLocations } from "@/data/similarLocations";
+import { changeDetections } from "@/data/changeDetections";
 import {
+  defaultInvestigation,
   getInvestigation,
   type InvestigationState,
 } from "@/lib/investigation";
 import Sidebar from "@/components/layout/Sidebar";
 import Topbar from "@/components/layout/Topbar";
 
-type MarkerType = "search" | "change" | "similar";
-
-const searchMarkerPositions: Record<
-  string,
-  { left: number; top: number }
-> = {
-  "site-001": { left: 38, top: 38 },
-  "site-002": { left: 53, top: 48 },
-  "site-003": { left: 66, top: 32 },
-  "site-004": { left: 30, top: 61 },
-};
-
-const similarMarkerPositions: Record<
-  string,
-  { left: number; top: number }
-> = {
-  "similar-001": { left: 58, top: 58 },
-  "similar-002": { left: 70, top: 39 },
-  "similar-003": { left: 42, top: 68 },
-  "similar-004": { left: 63, top: 23 },
-};
-
-export default function MapPage() {
+export default function ChangeDetectionPage() {
   const router = useRouter();
 
-  const [investigation, setInvestigation] =
-    useState<InvestigationState | null>(null);
-
-  const [activeLayers, setActiveLayers] = useState({
-    search: true,
-    changes: true,
-    similar: true,
-    aoi: true,
-  });
-
-  const [selectedMarker, setSelectedMarker] = useState<{
-    type: MarkerType;
-    id: string;
-  } | null>(null);
-
-  useEffect(() => {
-    const active = getInvestigation();
-
-    setInvestigation(active);
-
-    setSelectedMarker({
-      type: "change",
-      id: active.siteId,
-    });
-  }, []);
-
-  const toggleLayer = (layer: keyof typeof activeLayers) => {
-    setActiveLayers((current) => ({
-      ...current,
-      [layer]: !current[layer],
-    }));
-  };
-
-  const activeSearch = searchResults.find(
-    (result) => result.id === investigation?.siteId
+  const [investigation, setInvestigation] = useState<InvestigationState>(
+    defaultInvestigation
   );
 
-  const selectedSearch =
-    selectedMarker?.type === "search"
-      ? searchResults.find(
-          (item) => item.id === selectedMarker.id
-        )
-      : null;
+  useEffect(() => {
+    setInvestigation(getInvestigation());
+  }, []);
 
-  const selectedSimilar =
-    selectedMarker?.type === "similar"
-      ? similarLocations.find(
-          (item) => item.id === selectedMarker.id
-        )
-      : null;
+  const detection =
+    changeDetections.find(
+      (item) => item.siteId === investigation.siteId
+    ) || changeDetections[0];
 
-  const location =
-    investigation?.location || "Narmada Basin — Sector A";
+  const [viewMode, setViewMode] = useState<"side" | "overlay">("side");
+  const [opacity, setOpacity] = useState(50);
+  const [aligning, setAligning] = useState(false);
+  const [alignmentError, setAlignmentError] = useState(
+    detection.alignmentError
+  );
+  const [showMask, setShowMask] = useState(false);
+  const [decision, setDecision] = useState<
+    "confirmed" | "rejected" | null
+  >(null);
 
-  const changeType =
-    investigation?.changeType || "Construction";
+  const runAlignment = () => {
+    if (aligning) return;
 
-  const confidence =
-    investigation?.confidence || 91;
+    setAligning(true);
 
-  const activePosition =
-    searchMarkerPositions[investigation?.siteId || "site-001"] ||
-    searchMarkerPositions["site-001"];
+    setTimeout(() => {
+      setAlignmentError(0.8);
+      setAligning(false);
+    }, 1500);
+  };
 
   return (
-    <main className="min-h-screen bg-[#f4f8fc] text-[#16324f]">
+    <main className="min-h-screen bg-[#061522] text-[#e7f1f8]">
       <Sidebar />
       <Topbar />
 
-      <section className="ml-64 pt-20">
-        <div className="p-7 animate-fade-up">
+      <section className="ml-64 pt-[72px]">
+        <div className="p-7">
 
           {/* Header */}
-          <div className="mb-6">
-            <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#1677e8]">
-              Geospatial Workspace
+          <div className="mb-6 flex items-end justify-between">
+            <div>
+              <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8ed5ff]">
+                Temporal Analysis
+              </div>
+
+              <h1 className="mt-2 text-2xl font-semibold tracking-tight text-[#e7f1f8]">
+                Change Detection
+              </h1>
+
+              <p className="mt-2 text-sm text-[#6f8da3]">
+                Compare multi-temporal satellite imagery and validate
+                detected changes.
+              </p>
             </div>
 
-            <h1 className="mt-2 text-2xl font-semibold tracking-tight text-[#16324f]">
-              Investigation Map
-            </h1>
+            <div className="rounded-lg border border-[rgba(125,171,204,0.22)] bg-[#0b2032] px-4 py-2.5">
+              <div className="text-[8px] font-semibold uppercase tracking-[0.18em] text-[#6f8da3]">
+                Active Investigation
+              </div>
 
-            <p className="mt-2 text-sm text-[#71869b]">
-              Explore search results, detected changes, areas of
-              interest and similar locations.
-            </p>
+              <div className="mt-1 text-xs font-semibold text-[#e7f1f8]">
+                {investigation.location}
+              </div>
+            </div>
           </div>
 
-          {/* Active Investigation */}
-          <div className="mb-5 rounded-xl border border-[#cfe0f0] bg-white px-5 py-4">
-            <div className="flex items-center justify-between">
+          {/* Temporal Selection */}
+          <div className="mb-5 rounded-2xl border border-[rgba(125,171,204,0.16)] bg-[#0b2032] p-5 shadow-[0_10px_30px_rgba(0,0,0,0.12)]">
+
+            <div className="grid grid-cols-[1.3fr_1fr_1fr_auto] items-end gap-5">
+
+              <Field
+                label="Area of Interest"
+                value={investigation.location}
+              />
+
+              <Field
+                label="Before Date"
+                value="2021"
+              />
+
+              <Field
+                label="After Date"
+                value="2025"
+              />
+
+              <button
+                onClick={() =>
+                  document
+                    .getElementById("comparison")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="h-[55px] rounded-lg bg-[#1677aa] px-6 text-xs font-semibold text-white hover:bg-[#1d8fc8]"
+              >
+                Compare
+              </button>
+
+            </div>
+          </div>
+
+          {/* Comparison */}
+          <section
+            id="comparison"
+            className="mb-5 rounded-2xl border border-[rgba(125,171,204,0.16)] bg-[#0b2032] p-5 shadow-[0_10px_30px_rgba(0,0,0,0.12)]"
+          >
+            <div className="mb-4 flex items-center justify-between">
 
               <div>
-                <div className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#1677e8]">
-                  Active Investigation
+                <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#6f8da3]">
+                  Temporal Comparison
                 </div>
 
-                <div className="mt-1 text-sm font-semibold text-[#16324f]">
-                  {location}
+                <div className="mt-1 text-sm font-semibold text-[#e7f1f8]">
+                  {investigation.location}
                 </div>
               </div>
 
-              <div className="flex items-center gap-6">
+              <div className="flex rounded-lg border border-[rgba(125,171,204,0.16)] bg-[#081a29] p-1">
+                <button
+                  onClick={() => setViewMode("side")}
+                  className={`rounded-md px-4 py-2 text-[10px] font-semibold ${
+                    viewMode === "side"
+                      ? "bg-[#0b2032] text-[#8ed5ff] shadow-sm"
+                      : "text-[#6f8da3]"
+                  }`}
+                >
+                  Side by Side
+                </button>
 
-                <MapHeaderMeta
-                  label="Type"
-                  value={changeType}
+                <button
+                  onClick={() => setViewMode("overlay")}
+                  className={`rounded-md px-4 py-2 text-[10px] font-semibold ${
+                    viewMode === "overlay"
+                      ? "bg-[#0b2032] text-[#8ed5ff] shadow-sm"
+                      : "text-[#6f8da3]"
+                  }`}
+                >
+                  Overlay
+                </button>
+              </div>
+            </div>
+
+            {viewMode === "side" ? (
+              <div className="grid grid-cols-2 gap-4">
+
+                <ImagePanel
+                  title="Before"
+                  date="2021"
+                  src="/satellite/before/2021.png"
                 />
 
-                <MapHeaderMeta
-                  label="Confidence"
-                  value={`${confidence}%`}
-                />
-
-                <MapHeaderMeta
-                  label="Period"
-                  value="2021 → 2025"
+                <ImagePanel
+                  title="After"
+                  date="2025"
+                  src="/satellite/after/2025.png"
                 />
 
               </div>
-            </div>
-          </div>
+            ) : (
+              <div className="relative h-[440px] overflow-hidden rounded-xl border border-[rgba(125,171,204,0.16)]">
 
-          {/* Map */}
-          <section className="relative h-[650px] overflow-hidden rounded-2xl border border-[#dce6f0] bg-white shadow-sm">
+                <img
+                  src="/satellite/before/2021.png"
+                  alt="Before satellite imagery"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
 
-            {/* Satellite imagery */}
-            <div className="absolute inset-0">
-              <img
-                src="/satellite/base-map.png"
-                alt="Satellite map"
-                className="h-full w-full object-cover"
-              />
+                <img
+                  src="/satellite/after/2025.png"
+                  alt="After satellite imagery"
+                  className="absolute inset-0 h-full w-full object-cover"
+                  style={{
+                    opacity: opacity / 100,
+                  }}
+                />
 
-              <div className="absolute inset-0 bg-white/5" />
-            </div>
-
-            {/* AOI */}
-            {activeLayers.aoi && (
-              <div className="pointer-events-none absolute left-[24%] top-[25%] h-[48%] w-[46%] rounded-[4px] border-2 border-dashed border-[#1677e8] bg-[#1677e8]/5">
-
-                <div className="absolute -top-7 left-0 rounded-md border border-[#b8d2ed] bg-white/95 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-wider text-[#1677e8] shadow-sm">
-                  Active AOI
+                <div className="absolute left-4 top-4 rounded-md bg-[#0b2032]/95 px-3 py-2 text-[10px] font-semibold text-[#e7f1f8] shadow">
+                  2021 → 2025
                 </div>
 
-              </div>
-            )}
-
-            {/* Search result markers */}
-            {activeLayers.search &&
-              searchResults.map((result) => {
-                const position =
-                  searchMarkerPositions[result.id];
-
-                if (!position) return null;
-
-                return (
-                  <MapMarker
-                    key={result.id}
-                    left={position.left}
-                    top={position.top}
-                    type="search"
-                    selected={
-                      selectedMarker?.type === "search" &&
-                      selectedMarker.id === result.id
-                    }
-                    onClick={() =>
-                      setSelectedMarker({
-                        type: "search",
-                        id: result.id,
-                      })
-                    }
-                  />
-                );
-              })}
-
-            {/* Active detected change */}
-            {activeLayers.changes && activeSearch && (
-              <MapMarker
-                left={activePosition.left}
-                top={activePosition.top}
-                type="change"
-                selected={
-                  selectedMarker?.type === "change" &&
-                  selectedMarker.id === investigation?.siteId
-                }
-                onClick={() =>
-                  setSelectedMarker({
-                    type: "change",
-                    id: investigation?.siteId || "site-001",
-                  })
-                }
-              />
-            )}
-
-            {/* Similar location markers */}
-            {activeLayers.similar &&
-              similarLocations.map((location) => {
-                const position =
-                  similarMarkerPositions[location.id];
-
-                if (!position) return null;
-
-                return (
-                  <MapMarker
-                    key={location.id}
-                    left={position.left}
-                    top={position.top}
-                    type="similar"
-                    selected={
-                      selectedMarker?.type === "similar" &&
-                      selectedMarker.id === location.id
-                    }
-                    onClick={() =>
-                      setSelectedMarker({
-                        type: "similar",
-                        id: location.id,
-                      })
-                    }
-                  />
-                );
-              })}
-
-            {/* Layer Controls */}
-            <div className="absolute right-5 top-5 w-52 rounded-xl border border-white/60 bg-white/95 p-3 shadow-lg backdrop-blur">
-
-              <div className="mb-3 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#71869b]">
-                Map Layers
-              </div>
-
-              <LayerToggle
-                label="Search Results"
-                active={activeLayers.search}
-                marker="search"
-                onClick={() => toggleLayer("search")}
-              />
-
-              <LayerToggle
-                label="Detected Changes"
-                active={activeLayers.changes}
-                marker="change"
-                onClick={() => toggleLayer("changes")}
-              />
-
-              <LayerToggle
-                label="Similar Locations"
-                active={activeLayers.similar}
-                marker="similar"
-                onClick={() => toggleLayer("similar")}
-              />
-
-              <LayerToggle
-                label="AOI Boundary"
-                active={activeLayers.aoi}
-                marker="aoi"
-                onClick={() => toggleLayer("aoi")}
-              />
-
-            </div>
-
-            {/* Selected Location */}
-            <div className="absolute bottom-5 left-5 w-[340px] rounded-2xl border border-white/70 bg-white/95 p-5 shadow-xl backdrop-blur">
-
-              <div className="flex items-start justify-between">
-
-                <div>
-                  <div className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#1677e8]">
-                    Selected Location
+                <div className="absolute bottom-4 left-1/2 w-64 -translate-x-1/2 rounded-xl border border-white/60 bg-[#0b2032]/95 px-4 py-3 shadow-lg">
+                  <div className="mb-2 flex justify-between text-[9px] font-semibold text-[#6f8da3]">
+                    <span>Before</span>
+                    <span>After opacity</span>
                   </div>
 
-                  <h2 className="mt-1 text-sm font-semibold text-[#16324f]">
-                    {selectedMarker?.type === "similar"
-                      ? selectedSimilar?.location
-                      : selectedMarker?.type === "search"
-                        ? selectedSearch?.location
-                        : location}
-                  </h2>
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value={opacity}
+                    onChange={(e) =>
+                      setOpacity(Number(e.target.value))
+                    }
+                    className="w-full"
+                  />
                 </div>
 
-                <span className="rounded-md bg-[#eaf3ff] px-2 py-1 text-[9px] font-semibold text-[#1677e8]">
-                  {selectedMarker?.type === "similar"
-                    ? `${selectedSimilar?.similarity}% Similar`
-                    : selectedMarker?.type === "search"
-                      ? `${selectedSearch?.relevance}% Match`
-                      : `${confidence}% Confidence`}
-                </span>
+              </div>
+            )}
+          </section>
 
+          {/* Detection Results */}
+          <div className="grid grid-cols-[1.5fr_1fr] gap-5">
+
+            {/* Changes */}
+            <section className="rounded-2xl border border-[rgba(125,171,204,0.16)] bg-[#0b2032] p-5">
+
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#6f8da3]">
+                    Detected Changes
+                  </div>
+
+                  <div className="mt-1 text-sm font-semibold text-[#e7f1f8]">
+                    {detection.changeCount} significant changes detected
+                  </div>
+                </div>
+
+                <span className="rounded-full bg-[#55b8f4]/10 px-3 py-1 text-[9px] font-semibold text-[#8ed5ff]">
+                  AI Analysis
+                </span>
               </div>
 
-              <div className="mt-4 grid grid-cols-2 gap-3 border-t border-[#e3eaf1] pt-4">
+              <div className="mt-5 space-y-3">
+                {detection.changes.map((change) => (
+                  <div
+                    key={change.type}
+                    className="rounded-xl border border-[rgba(125,171,204,0.13)] bg-[#0c2234] p-4 transition hover:border-[#55b8f4]/25"
+                  >
+                    <div className="flex items-center justify-between">
 
-                <MapMeta
-                  label="Type"
-                  value={
-                    selectedMarker?.type === "similar"
-                      ? "Similar Location"
-                      : selectedMarker?.type === "search"
-                        ? selectedSearch?.changeType ||
-                          "Search Result"
-                        : changeType
-                  }
-                />
+                      <div>
+                        <div className="text-xs font-semibold text-[#e7f1f8]">
+                          {change.type}
+                        </div>
 
-                <MapMeta
-                  label="Date"
-                  value={
-                    selectedMarker?.type === "similar"
-                      ? selectedSimilar?.date || "—"
-                      : selectedSearch?.date ||
-                        activeSearch?.date ||
-                        "15 Jan 2026"
-                  }
-                />
+                        <div className="mt-1 text-[10px] text-[#6f8da3]">
+                          Estimated affected area · {change.area}
+                        </div>
+                      </div>
 
-                <MapMeta
-                  label="Sensor"
-                  value={
-                    selectedMarker?.type === "similar"
-                      ? selectedSimilar?.sensor || "—"
-                      : selectedSearch?.sensor ||
-                        activeSearch?.sensor ||
-                        "Sentinel-2"
-                  }
-                />
+                      <div className="text-right">
+                        <div className="text-sm font-bold text-[#8ed5ff]">
+                          {change.confidence}%
+                        </div>
 
-                <MapMeta
-                  label="Resolution"
-                  value={
-                    selectedSearch?.resolution ||
-                    activeSearch?.resolution ||
-                    "10 m"
-                  }
-                />
+                        <div className="text-[8px] uppercase tracking-wider text-[#58788d]">
+                          Confidence
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[#183345]">
+                      <div
+                        className="h-full rounded-full bg-[#1677aa]"
+                        style={{
+                          width: `${change.confidence}%`,
+                        }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Registration */}
+            <section className="rounded-2xl border border-[rgba(125,171,204,0.16)] bg-[#0b2032] p-5">
+
+              <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#6f8da3]">
+                Image Registration
+              </div>
+
+              <h2 className="mt-1 text-sm font-semibold text-[#e7f1f8]">
+                Spatial Alignment
+              </h2>
+
+              <p className="mt-2 text-[10px] leading-5 text-[#6f8da3]">
+                Align the before and after imagery before validating
+                detected changes.
+              </p>
+
+              <div className="mt-5 rounded-xl border border-[rgba(125,171,204,0.16)] bg-[#081a29] p-4">
+
+                <div className="flex items-center justify-between">
+                  <span className="text-[9px] font-semibold uppercase tracking-wider text-[#6f8da3]">
+                    Registration Error
+                  </span>
+
+                  <span
+                    className={`text-sm font-bold ${
+                      alignmentError <= 1
+                        ? "text-[#63ddb2]"
+                        : "text-[#d4aa55]"
+                    }`}
+                  >
+                    {alignmentError.toFixed(1)} px
+                  </span>
+                </div>
+
+                <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[#183345]">
+                  <div
+                    className="h-full rounded-full bg-[#39c99a]"
+                    style={{
+                      width: `${Math.max(
+                        15,
+                        100 - alignmentError * 15
+                      )}%`,
+                    }}
+                  />
+                </div>
+
+                <button
+                  onClick={runAlignment}
+                  disabled={aligning}
+                  className="mt-4 w-full rounded-lg border border-[rgba(125,171,204,0.22)] bg-[#0b2032] py-2.5 text-[10px] font-semibold text-[#8ed5ff] hover:hover:bg-[#102b3c] disabled:opacity-60"
+                >
+                  {aligning ? "Aligning Imagery…" : "Auto Align"}
+                </button>
+
+              </div>
+            </section>
+          </div>
+
+          {/* False Alarm */}
+          <section className="mt-5 rounded-2xl border border-[#9b782f]/35 bg-[#211b0d] p-5">
+
+            <div className="flex items-start justify-between">
+
+              <div className="flex gap-4">
+
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#8d6a20]/20 text-[#d4aa55]">
+                  !
+                </div>
+
+                <div>
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#d4aa55]">
+                    Potential False Alarm
+                  </div>
+
+                  <h2 className="mt-1 text-sm font-semibold text-[#e0c783]">
+                    Review required before confirmation
+                  </h2>
+
+                  <p className="mt-2 max-w-2xl text-[10px] leading-5 text-[#bfae7c]">
+                    {detection.falseAlarmReason}
+                  </p>
+
+                  <div className="mt-3 flex gap-2">
+                    {[
+                      "Cloud",
+                      "Shadow",
+                      "Seasonal Variation",
+                    ].map((reason) => (
+                      <span
+                        key={reason}
+                        className="rounded-md border border-[#9b782f]/35 bg-[#0b2032]/70 px-2.5 py-1 text-[9px] text-[#bfae7c]"
+                      >
+                        {reason}
+                      </span>
+                    ))}
+                  </div>
+                </div>
 
               </div>
 
               <button
-                onClick={() => {
-                  if (selectedMarker?.type === "similar") {
-                    router.push("/similar-locations");
-                  } else {
-                    router.push("/change-detection");
-                  }
-                }}
-                className="mt-4 w-full rounded-lg bg-[#1677e8] py-2.5 text-[10px] font-semibold text-white hover:bg-[#1268cf]"
+                onClick={() => setShowMask(!showMask)}
+                className="rounded-lg border border-[#b78a2a]/40 bg-[#0b2032] px-4 py-2 text-[10px] font-semibold text-[#d4aa55]"
               >
-                View Investigation →
+                {showMask ? "Hide Mask" : "View Mask"}
               </button>
 
             </div>
 
-            {/* North indicator */}
-            <div className="absolute left-5 top-5 flex h-11 w-11 items-center justify-center rounded-full border border-white/70 bg-white/90 text-[10px] font-bold text-[#16324f] shadow-md">
-              N
+            {showMask && (
+              <div className="mt-4 rounded-xl border border-[#9b782f]/35 bg-[#6e5720]/25 p-4 text-center text-[10px] font-semibold text-[#d4aa55]">
+                Simulated false-alarm mask · cloud-affected region
+              </div>
+            )}
+          </section>
+
+          {/* Analyst Decision */}
+          <section className="mt-5 rounded-2xl border border-[rgba(125,171,204,0.16)] bg-[#0b2032] p-5 shadow-[0_10px_30px_rgba(0,0,0,0.12)]">
+
+            <div className="flex items-center justify-between">
+
+              <div>
+                <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#6f8da3]">
+                  Analyst Decision
+                </div>
+
+                <div className="mt-1 text-sm font-semibold text-[#e7f1f8]">
+                  Validate detected construction
+                </div>
+              </div>
+
+              {decision && (
+                <span
+                  className={`rounded-full px-3 py-1 text-[9px] font-semibold ${
+                    decision === "confirmed"
+                      ? "bg-[#39c99a]/10 text-[#63ddb2]"
+                      : "bg-[#fdeaea] text-[#f07b77]"
+                  }`}
+                >
+                  {decision === "confirmed"
+                    ? "Confirmed"
+                    : "Rejected"}
+                </span>
+              )}
+
             </div>
 
-            {/* Attribution */}
-            <div className="absolute bottom-2 right-3 rounded bg-white/85 px-2 py-1 text-[8px] text-[#71869b]">
-              Satellite imagery · Prototype visualization
+            <div className="mt-4 flex gap-3">
+
+              <button
+                onClick={() => setDecision("confirmed")}
+                className="rounded-lg bg-[#39c99a] px-6 py-2.5 text-[10px] font-semibold text-white hover:bg-[#2fb889]"
+              >
+                Confirm Change
+              </button>
+
+              <button
+                onClick={() => setDecision("rejected")}
+                className="rounded-lg border border-[#c84845]/30 bg-[#0b2032] px-6 py-2.5 text-[10px] font-semibold text-[#f07b77] hover:bg-[#c84845]/[0.06]"
+              >
+                Reject
+              </button>
+
+              <button
+                onClick={() => router.push("/similar-locations")}
+                className="ml-auto rounded-lg border border-[rgba(125,171,204,0.2)] bg-[#0b2032] px-5 py-2.5 text-[10px] font-semibold text-[#8ed5ff] hover:bg-[#102b3c]"
+              >
+                Find Similar Locations →
+              </button>
+
             </div>
+
+            {decision === "confirmed" && (
+              <div className="mt-4 rounded-lg border border-[#39c99a]/25 bg-[#39c99a]/[0.06] px-4 py-3 text-[10px] text-[#63ddb2]">
+                Construction change confirmed by analyst. Investigation
+                can now continue to similar-location discovery.
+              </div>
+            )}
+
+            {decision === "rejected" && (
+              <div className="mt-4 rounded-lg border border-[#c84845]/25 bg-[#c84845]/[0.06] px-4 py-3 text-[10px] text-[#f07b77]">
+                Detection rejected and marked for review.
+              </div>
+            )}
 
           </section>
+
         </div>
       </section>
     </main>
   );
 }
 
-function MapMarker({
-  left,
-  top,
-  type,
-  selected,
-  onClick,
-}: {
-  left: number;
-  top: number;
-  type: MarkerType;
-  selected: boolean;
-  onClick: () => void;
-}) {
-  const markerClass =
-    type === "change"
-      ? "bg-[#d9534f] border-[#fff]"
-      : type === "similar"
-        ? "bg-[#18a67a] border-[#fff]"
-        : "bg-[#1677e8] border-[#fff]";
-
-  return (
-    <button
-      onClick={onClick}
-      className={`marker-pulse absolute flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 shadow-lg transition-all ${
-        selected ? "scale-125" : "hover:scale-110"
-      } ${markerClass}`}
-      style={{
-        left: `${left}%`,
-        top: `${top}%`,
-      }}
-      aria-label={`${type} marker`}
-    >
-      <span className="h-1.5 w-1.5 rounded-full bg-white" />
-    </button>
-  );
-}
-
-function LayerToggle({
-  label,
-  active,
-  marker,
-  onClick,
-}: {
-  label: string;
-  active: boolean;
-  marker: MarkerType | "aoi";
-  onClick: () => void;
-}) {
-  const markerColor =
-    marker === "change"
-      ? "bg-[#d9534f]"
-      : marker === "similar"
-        ? "bg-[#18a67a]"
-        : marker === "aoi"
-          ? "border border-[#1677e8] bg-transparent"
-          : "bg-[#1677e8]";
-
-  return (
-    <button
-      onClick={onClick}
-      className="flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left hover:bg-[#f4f8fd]"
-    >
-      <span
-        className={`h-2.5 w-2.5 rounded-full ${markerColor} ${
-          active ? "opacity-100" : "opacity-25"
-        }`}
-      />
-
-      <span
-        className={`text-[10px] ${
-          active
-            ? "font-medium text-[#496784]"
-            : "text-[#a2afbb]"
-        }`}
-      >
-        {label}
-      </span>
-
-      <span
-        className={`ml-auto h-3.5 w-6 rounded-full p-0.5 ${
-          active ? "bg-[#1677e8]" : "bg-[#d5dee7]"
-        }`}
-      >
-        <span
-          className={`block h-2.5 w-2.5 rounded-full bg-white transition-transform ${
-            active ? "translate-x-2.5" : "translate-x-0"
-          }`}
-        />
-      </span>
-    </button>
-  );
-}
-
-function MapHeaderMeta({
-  label,
-  value,
-}: {
-  label: string;
-  value: string;
-}) {
-  return (
-    <div className="text-right">
-      <div className="text-[8px] font-semibold uppercase tracking-wider text-[#8a9bac]">
-        {label}
-      </div>
-
-      <div className="mt-1 text-[10px] font-semibold text-[#496784]">
-        {value}
-      </div>
-    </div>
-  );
-}
-
-function MapMeta({
+function Field({
   label,
   value,
 }: {
@@ -526,13 +488,49 @@ function MapMeta({
 }) {
   return (
     <div>
-      <div className="text-[8px] font-semibold uppercase tracking-wider text-[#8a9bac]">
+      <div className="mb-2 text-[9px] font-semibold uppercase tracking-[0.18em] text-[#6f8da3]">
         {label}
       </div>
 
-      <div className="mt-1 text-[10px] font-medium text-[#496784]">
+      <div className="flex h-[55px] items-center rounded-lg border border-[rgba(125,171,204,0.18)] bg-[#081a29] px-4 text-sm text-[#bcd3e1]">
         {value}
       </div>
+    </div>
+  );
+}
+
+function ImagePanel({
+  title,
+  date,
+  src,
+}: {
+  title: string;
+  date: string;
+  src: string;
+}) {
+  return (
+    <div className="overflow-hidden rounded-xl border border-[rgba(125,171,204,0.16)] bg-[#081a29]">
+
+      <div className="flex items-center justify-between border-b border-[rgba(125,171,204,0.16)] bg-[#0b2032] px-4 py-3">
+
+        <div className="text-[10px] font-semibold uppercase tracking-wider text-[#6f8da3]">
+          {title}
+        </div>
+
+        <span className="rounded-md bg-[#0b2032] px-2 py-1 text-[9px] font-semibold text-[#bcd3e1]">
+          {date}
+        </span>
+
+      </div>
+
+      <div className="h-[440px] bg-[#102b3c]">
+        <img
+          src={src}
+          alt={`${title} satellite imagery from ${date}`}
+          className="h-full w-full object-cover"
+        />
+      </div>
+
     </div>
   );
 }

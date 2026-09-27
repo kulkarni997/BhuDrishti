@@ -45,43 +45,43 @@ export default function ChangeDetectionPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#f4f8fc] text-[#16324f]">
+    <main className="min-h-screen bg-[#061522] text-[#e7f1f8]">
       <Sidebar />
       <Topbar />
 
-      <section className="ml-64 pt-20">
+      <section className="ml-64 pt-[72px]">
         <div className="p-7">
 
           {/* Header */}
           <div className="mb-6 flex items-end justify-between">
             <div>
-              <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#1677e8]">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8ed5ff]">
                 Temporal Analysis
               </div>
 
-              <h1 className="mt-2 text-2xl font-semibold tracking-tight text-[#16324f]">
+              <h1 className="mt-2 text-2xl font-semibold tracking-tight text-[#e7f1f8]">
                 Change Detection
               </h1>
 
-              <p className="mt-2 text-sm text-[#71869b]">
+              <p className="mt-2 text-sm text-[#6f8da3]">
                 Compare multi-temporal satellite imagery and validate
                 detected changes.
               </p>
             </div>
 
-            <div className="rounded-lg border border-[#cfe0f0] bg-white px-4 py-2.5">
-              <div className="text-[8px] font-semibold uppercase tracking-[0.18em] text-[#71869b]">
+            <div className="rounded-lg border border-[rgba(125,171,204,0.22)] bg-[#0b2032] px-4 py-2.5">
+              <div className="text-[8px] font-semibold uppercase tracking-[0.18em] text-[#6f8da3]">
                 Active Investigation
               </div>
 
-              <div className="mt-1 text-xs font-semibold text-[#16324f]">
+              <div className="mt-1 text-xs font-semibold text-[#e7f1f8]">
                 {investigation.location}
               </div>
             </div>
           </div>
 
           {/* Temporal Selection */}
-          <div className="mb-5 rounded-2xl border border-[#dce6f0] bg-white p-5">
+          <div className="mb-5 rounded-2xl border border-[rgba(125,171,204,0.16)] bg-[#0b2032] p-5 shadow-[0_10px_30px_rgba(0,0,0,0.12)]">
 
             <div className="grid grid-cols-[1.3fr_1fr_1fr_auto] items-end gap-5">
 
@@ -106,7 +106,7 @@ export default function ChangeDetectionPage() {
                     .getElementById("comparison")
                     ?.scrollIntoView({ behavior: "smooth" })
                 }
-                className="h-[55px] rounded-lg bg-[#1677e8] px-6 text-xs font-semibold text-white hover:bg-[#1268cf]"
+                className="h-[55px] rounded-lg bg-[#1677aa] px-6 text-xs font-semibold text-white hover:bg-[#1d8fc8]"
               >
                 Compare
               </button>
@@ -117,27 +117,27 @@ export default function ChangeDetectionPage() {
           {/* Comparison */}
           <section
             id="comparison"
-            className="mb-5 rounded-2xl border border-[#dce6f0] bg-white p-5"
+            className="mb-5 rounded-2xl border border-[rgba(125,171,204,0.16)] bg-[#0b2032] p-5 shadow-[0_10px_30px_rgba(0,0,0,0.12)]"
           >
             <div className="mb-4 flex items-center justify-between">
 
               <div>
-                <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#71869b]">
+                <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#6f8da3]">
                   Temporal Comparison
                 </div>
 
-                <div className="mt-1 text-sm font-semibold text-[#16324f]">
+                <div className="mt-1 text-sm font-semibold text-[#e7f1f8]">
                   {investigation.location}
                 </div>
               </div>
 
-              <div className="flex rounded-lg border border-[#dce6f0] bg-[#f7faff] p-1">
+              <div className="flex rounded-lg border border-[rgba(125,171,204,0.16)] bg-[#081a29] p-1">
                 <button
                   onClick={() => setViewMode("side")}
                   className={`rounded-md px-4 py-2 text-[10px] font-semibold ${
                     viewMode === "side"
-                      ? "bg-white text-[#1677e8] shadow-sm"
-                      : "text-[#71869b]"
+                      ? "bg-[#0b2032] text-[#8ed5ff] shadow-sm"
+                      : "text-[#6f8da3]"
                   }`}
                 >
                   Side by Side
@@ -147,8 +147,8 @@ export default function ChangeDetectionPage() {
                   onClick={() => setViewMode("overlay")}
                   className={`rounded-md px-4 py-2 text-[10px] font-semibold ${
                     viewMode === "overlay"
-                      ? "bg-white text-[#1677e8] shadow-sm"
-                      : "text-[#71869b]"
+                      ? "bg-[#0b2032] text-[#8ed5ff] shadow-sm"
+                      : "text-[#6f8da3]"
                   }`}
                 >
                   Overlay
@@ -173,7 +173,7 @@ export default function ChangeDetectionPage() {
 
               </div>
             ) : (
-              <div className="relative h-[440px] overflow-hidden rounded-xl border border-[#dce6f0]">
+              <div className="relative h-[440px] overflow-hidden rounded-xl border border-[rgba(125,171,204,0.16)]">
 
                 <img
                   src="/satellite/before/2021.png"
@@ -190,12 +190,12 @@ export default function ChangeDetectionPage() {
                   }}
                 />
 
-                <div className="absolute left-4 top-4 rounded-md bg-white/95 px-3 py-2 text-[10px] font-semibold text-[#16324f] shadow">
+                <div className="absolute left-4 top-4 rounded-md bg-[#0b2032]/95 px-3 py-2 text-[10px] font-semibold text-[#e7f1f8] shadow">
                   2021 → 2025
                 </div>
 
-                <div className="absolute bottom-4 left-1/2 w-64 -translate-x-1/2 rounded-xl border border-white/60 bg-white/95 px-4 py-3 shadow-lg">
-                  <div className="mb-2 flex justify-between text-[9px] font-semibold text-[#71869b]">
+                <div className="absolute bottom-4 left-1/2 w-64 -translate-x-1/2 rounded-xl border border-white/60 bg-[#0b2032]/95 px-4 py-3 shadow-lg">
+                  <div className="mb-2 flex justify-between text-[9px] font-semibold text-[#6f8da3]">
                     <span>Before</span>
                     <span>After opacity</span>
                   </div>
@@ -220,20 +220,20 @@ export default function ChangeDetectionPage() {
           <div className="grid grid-cols-[1.5fr_1fr] gap-5">
 
             {/* Changes */}
-            <section className="rounded-2xl border border-[#dce6f0] bg-white p-5">
+            <section className="rounded-2xl border border-[rgba(125,171,204,0.16)] bg-[#0b2032] p-5">
 
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#71869b]">
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#6f8da3]">
                     Detected Changes
                   </div>
 
-                  <div className="mt-1 text-sm font-semibold text-[#16324f]">
+                  <div className="mt-1 text-sm font-semibold text-[#e7f1f8]">
                     {detection.changeCount} significant changes detected
                   </div>
                 </div>
 
-                <span className="rounded-full bg-[#eaf3ff] px-3 py-1 text-[9px] font-semibold text-[#1677e8]">
+                <span className="rounded-full bg-[#55b8f4]/10 px-3 py-1 text-[9px] font-semibold text-[#8ed5ff]">
                   AI Analysis
                 </span>
               </div>
@@ -242,35 +242,35 @@ export default function ChangeDetectionPage() {
                 {detection.changes.map((change) => (
                   <div
                     key={change.type}
-                    className="rounded-xl border border-[#e1e9f1] bg-[#fbfdff] p-4"
+                    className="rounded-xl border border-[rgba(125,171,204,0.13)] bg-[#0c2234] p-4 transition hover:border-[#55b8f4]/25"
                   >
                     <div className="flex items-center justify-between">
 
                       <div>
-                        <div className="text-xs font-semibold text-[#16324f]">
+                        <div className="text-xs font-semibold text-[#e7f1f8]">
                           {change.type}
                         </div>
 
-                        <div className="mt-1 text-[10px] text-[#71869b]">
+                        <div className="mt-1 text-[10px] text-[#6f8da3]">
                           Estimated affected area · {change.area}
                         </div>
                       </div>
 
                       <div className="text-right">
-                        <div className="text-sm font-bold text-[#1677e8]">
+                        <div className="text-sm font-bold text-[#8ed5ff]">
                           {change.confidence}%
                         </div>
 
-                        <div className="text-[8px] uppercase tracking-wider text-[#8a9bac]">
+                        <div className="text-[8px] uppercase tracking-wider text-[#58788d]">
                           Confidence
                         </div>
                       </div>
 
                     </div>
 
-                    <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[#e6edf4]">
+                    <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[#183345]">
                       <div
-                        className="h-full rounded-full bg-[#1677e8]"
+                        className="h-full rounded-full bg-[#1677aa]"
                         style={{
                           width: `${change.confidence}%`,
                         }}
@@ -282,42 +282,42 @@ export default function ChangeDetectionPage() {
             </section>
 
             {/* Registration */}
-            <section className="rounded-2xl border border-[#dce6f0] bg-white p-5">
+            <section className="rounded-2xl border border-[rgba(125,171,204,0.16)] bg-[#0b2032] p-5">
 
-              <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#71869b]">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#6f8da3]">
                 Image Registration
               </div>
 
-              <h2 className="mt-1 text-sm font-semibold text-[#16324f]">
+              <h2 className="mt-1 text-sm font-semibold text-[#e7f1f8]">
                 Spatial Alignment
               </h2>
 
-              <p className="mt-2 text-[10px] leading-5 text-[#71869b]">
+              <p className="mt-2 text-[10px] leading-5 text-[#6f8da3]">
                 Align the before and after imagery before validating
                 detected changes.
               </p>
 
-              <div className="mt-5 rounded-xl border border-[#dce6f0] bg-[#f8fbff] p-4">
+              <div className="mt-5 rounded-xl border border-[rgba(125,171,204,0.16)] bg-[#081a29] p-4">
 
                 <div className="flex items-center justify-between">
-                  <span className="text-[9px] font-semibold uppercase tracking-wider text-[#71869b]">
+                  <span className="text-[9px] font-semibold uppercase tracking-wider text-[#6f8da3]">
                     Registration Error
                   </span>
 
                   <span
                     className={`text-sm font-bold ${
                       alignmentError <= 1
-                        ? "text-[#18a67a]"
-                        : "text-[#e3a52f]"
+                        ? "text-[#63ddb2]"
+                        : "text-[#d4aa55]"
                     }`}
                   >
                     {alignmentError.toFixed(1)} px
                   </span>
                 </div>
 
-                <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[#e5edf4]">
+                <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[#183345]">
                   <div
-                    className="h-full rounded-full bg-[#18a67a]"
+                    className="h-full rounded-full bg-[#39c99a]"
                     style={{
                       width: `${Math.max(
                         15,
@@ -330,7 +330,7 @@ export default function ChangeDetectionPage() {
                 <button
                   onClick={runAlignment}
                   disabled={aligning}
-                  className="mt-4 w-full rounded-lg border border-[#bcd3eb] bg-white py-2.5 text-[10px] font-semibold text-[#1677e8] hover:bg-[#f3f8fe] disabled:opacity-60"
+                  className="mt-4 w-full rounded-lg border border-[rgba(125,171,204,0.22)] bg-[#0b2032] py-2.5 text-[10px] font-semibold text-[#8ed5ff] hover:hover:bg-[#102b3c] disabled:opacity-60"
                 >
                   {aligning ? "Aligning Imagery…" : "Auto Align"}
                 </button>
@@ -340,26 +340,26 @@ export default function ChangeDetectionPage() {
           </div>
 
           {/* False Alarm */}
-          <section className="mt-5 rounded-2xl border border-[#ead9b3] bg-[#fffaf0] p-5">
+          <section className="mt-5 rounded-2xl border border-[#9b782f]/35 bg-[#211b0d] p-5">
 
             <div className="flex items-start justify-between">
 
               <div className="flex gap-4">
 
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#f9e8bb] text-[#b77c12]">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#8d6a20]/20 text-[#d4aa55]">
                   !
                 </div>
 
                 <div>
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#b77c12]">
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#d4aa55]">
                     Potential False Alarm
                   </div>
 
-                  <h2 className="mt-1 text-sm font-semibold text-[#6e531b]">
+                  <h2 className="mt-1 text-sm font-semibold text-[#e0c783]">
                     Review required before confirmation
                   </h2>
 
-                  <p className="mt-2 max-w-2xl text-[10px] leading-5 text-[#806a3b]">
+                  <p className="mt-2 max-w-2xl text-[10px] leading-5 text-[#bfae7c]">
                     {detection.falseAlarmReason}
                   </p>
 
@@ -371,7 +371,7 @@ export default function ChangeDetectionPage() {
                     ].map((reason) => (
                       <span
                         key={reason}
-                        className="rounded-md border border-[#ead9b3] bg-white/70 px-2.5 py-1 text-[9px] text-[#806a3b]"
+                        className="rounded-md border border-[#9b782f]/35 bg-[#0b2032]/70 px-2.5 py-1 text-[9px] text-[#bfae7c]"
                       >
                         {reason}
                       </span>
@@ -383,7 +383,7 @@ export default function ChangeDetectionPage() {
 
               <button
                 onClick={() => setShowMask(!showMask)}
-                className="rounded-lg border border-[#ddc98e] bg-white px-4 py-2 text-[10px] font-semibold text-[#8a681f]"
+                className="rounded-lg border border-[#b78a2a]/40 bg-[#0b2032] px-4 py-2 text-[10px] font-semibold text-[#d4aa55]"
               >
                 {showMask ? "Hide Mask" : "View Mask"}
               </button>
@@ -391,23 +391,23 @@ export default function ChangeDetectionPage() {
             </div>
 
             {showMask && (
-              <div className="mt-4 rounded-xl border border-[#ead9b3] bg-[#f6e7b7] p-4 text-center text-[10px] font-semibold text-[#8a681f]">
+              <div className="mt-4 rounded-xl border border-[#9b782f]/35 bg-[#6e5720]/25 p-4 text-center text-[10px] font-semibold text-[#d4aa55]">
                 Simulated false-alarm mask · cloud-affected region
               </div>
             )}
           </section>
 
           {/* Analyst Decision */}
-          <section className="mt-5 rounded-2xl border border-[#dce6f0] bg-white p-5">
+          <section className="mt-5 rounded-2xl border border-[rgba(125,171,204,0.16)] bg-[#0b2032] p-5 shadow-[0_10px_30px_rgba(0,0,0,0.12)]">
 
             <div className="flex items-center justify-between">
 
               <div>
-                <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#71869b]">
+                <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#6f8da3]">
                   Analyst Decision
                 </div>
 
-                <div className="mt-1 text-sm font-semibold text-[#16324f]">
+                <div className="mt-1 text-sm font-semibold text-[#e7f1f8]">
                   Validate detected construction
                 </div>
               </div>
@@ -416,8 +416,8 @@ export default function ChangeDetectionPage() {
                 <span
                   className={`rounded-full px-3 py-1 text-[9px] font-semibold ${
                     decision === "confirmed"
-                      ? "bg-[#e5f7f0] text-[#15936d]"
-                      : "bg-[#fdeaea] text-[#c84845]"
+                      ? "bg-[#39c99a]/10 text-[#63ddb2]"
+                      : "bg-[#fdeaea] text-[#f07b77]"
                   }`}
                 >
                   {decision === "confirmed"
@@ -432,21 +432,21 @@ export default function ChangeDetectionPage() {
 
               <button
                 onClick={() => setDecision("confirmed")}
-                className="rounded-lg bg-[#18a67a] px-6 py-2.5 text-[10px] font-semibold text-white hover:bg-[#13946d]"
+                className="rounded-lg bg-[#39c99a] px-6 py-2.5 text-[10px] font-semibold text-white hover:bg-[#2fb889]"
               >
                 Confirm Change
               </button>
 
               <button
                 onClick={() => setDecision("rejected")}
-                className="rounded-lg border border-[#e1bcbc] bg-white px-6 py-2.5 text-[10px] font-semibold text-[#c84845] hover:bg-[#fff6f6]"
+                className="rounded-lg border border-[#c84845]/30 bg-[#0b2032] px-6 py-2.5 text-[10px] font-semibold text-[#f07b77] hover:bg-[#c84845]/[0.06]"
               >
                 Reject
               </button>
 
               <button
                 onClick={() => router.push("/similar-locations")}
-                className="ml-auto rounded-lg border border-[#c9d9e8] bg-white px-5 py-2.5 text-[10px] font-semibold text-[#1677e8] hover:bg-[#f5f9fd]"
+                className="ml-auto rounded-lg border border-[rgba(125,171,204,0.2)] bg-[#0b2032] px-5 py-2.5 text-[10px] font-semibold text-[#8ed5ff] hover:bg-[#102b3c]"
               >
                 Find Similar Locations →
               </button>
@@ -454,14 +454,14 @@ export default function ChangeDetectionPage() {
             </div>
 
             {decision === "confirmed" && (
-              <div className="mt-4 rounded-lg border border-[#bfe5d6] bg-[#f1fbf7] px-4 py-3 text-[10px] text-[#198363]">
+              <div className="mt-4 rounded-lg border border-[#39c99a]/25 bg-[#39c99a]/[0.06] px-4 py-3 text-[10px] text-[#63ddb2]">
                 Construction change confirmed by analyst. Investigation
                 can now continue to similar-location discovery.
               </div>
             )}
 
             {decision === "rejected" && (
-              <div className="mt-4 rounded-lg border border-[#edcccc] bg-[#fff6f6] px-4 py-3 text-[10px] text-[#b94a47]">
+              <div className="mt-4 rounded-lg border border-[#c84845]/25 bg-[#c84845]/[0.06] px-4 py-3 text-[10px] text-[#f07b77]">
                 Detection rejected and marked for review.
               </div>
             )}
@@ -483,11 +483,11 @@ function Field({
 }) {
   return (
     <div>
-      <div className="mb-2 text-[9px] font-semibold uppercase tracking-[0.18em] text-[#71869b]">
+      <div className="mb-2 text-[9px] font-semibold uppercase tracking-[0.18em] text-[#6f8da3]">
         {label}
       </div>
 
-      <div className="flex h-[55px] items-center rounded-lg border border-[#d8e4ef] bg-[#f9fbfd] px-4 text-sm text-[#496784]">
+      <div className="flex h-[55px] items-center rounded-lg border border-[rgba(125,171,204,0.18)] bg-[#081a29] px-4 text-sm text-[#bcd3e1]">
         {value}
       </div>
     </div>
@@ -504,21 +504,21 @@ function ImagePanel({
   src: string;
 }) {
   return (
-    <div className="overflow-hidden rounded-xl border border-[#dce6f0] bg-[#f8fbff]">
+    <div className="overflow-hidden rounded-xl border border-[rgba(125,171,204,0.16)] bg-[#081a29]">
 
-      <div className="flex items-center justify-between border-b border-[#dce6f0] px-4 py-3">
+      <div className="flex items-center justify-between border-b border-[rgba(125,171,204,0.16)] bg-[#0b2032] px-4 py-3">
 
-        <div className="text-[10px] font-semibold uppercase tracking-wider text-[#71869b]">
+        <div className="text-[10px] font-semibold uppercase tracking-wider text-[#6f8da3]">
           {title}
         </div>
 
-        <span className="rounded-md bg-white px-2 py-1 text-[9px] font-semibold text-[#496784]">
+        <span className="rounded-md bg-[#0b2032] px-2 py-1 text-[9px] font-semibold text-[#bcd3e1]">
           {date}
         </span>
 
       </div>
 
-      <div className="h-[440px] bg-[#e9eff4]">
+      <div className="h-[440px] bg-[#102b3c]">
         <img
           src={src}
           alt={`${title} satellite imagery from ${date}`}

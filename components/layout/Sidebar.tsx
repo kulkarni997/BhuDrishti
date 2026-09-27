@@ -22,7 +22,7 @@ export default function Sidebar() {
         </div>
 
         <div className="bd-brand-copy">
-          <div className="bd-brand-name">BhuDrishti</div>
+          <div className="bd-brand-name">ORBITA</div>
           <div className="bd-brand-subtitle">GEOSPATIAL INTELLIGENCE</div>
         </div>
       </div>

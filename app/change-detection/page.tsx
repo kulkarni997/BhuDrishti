@@ -1,10 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "@/components/layout/Sidebar";
 import Topbar from "@/components/layout/Topbar";
 import { changeDetections } from "@/data/changeDetections";
 import { useRouter } from "next/navigation";
+import {
+  getInvestigation,
+  type InvestigationState,
+} from "@/lib/investigation";
 
 export default function ChangeDetectionPage() {
   const detection = changeDetections[0];
@@ -19,6 +23,12 @@ export default function ChangeDetectionPage() {
   const [showMask, setShowMask] = useState(false);
   const [confirmedAt, setConfirmedAt] = useState<string | null>(null);
   const router = useRouter();
+  const [investigation, setInvestigation] =
+  useState<InvestigationState | null>(null);
+
+  useEffect(() => {
+  setInvestigation(getInvestigation());
+}, []);
 
   return (
     <main className="min-h-screen bg-[#f4f8fc] text-[#16324f]">
@@ -63,7 +73,7 @@ export default function ChangeDetectionPage() {
                 </label>
 
                 <div className="flex h-11 items-center rounded-lg border border-[#dce6f0] bg-[#f9fbfd] px-3 text-xs font-medium text-[#496784]">
-                  Narmada Basin — Sector A
+                  {investigation?.location || "Narmada Basin — Sector A"}
                 </div>
               </div>
 

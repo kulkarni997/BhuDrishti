@@ -120,7 +120,7 @@ const filteredResults = useMemo(() => {
               </div>
 
               <h1 className="mt-2 text-2xl font-semibold tracking-tight text-[#e7f1f8]">
-                Semantic Search
+                Dashboard
               </h1>
 
               <p className="mt-1 text-sm text-[#6f8da3]">
@@ -139,6 +139,54 @@ const filteredResults = useMemo(() => {
               </div>
             </div>
           </div>
+
+          {/* Dashboard summary */}
+          <div className="mb-6 grid grid-cols-3 gap-4">
+            <DashboardStat label="Searches" value="128" detail="Semantic and visual retrieval" tone="blue" />
+            <DashboardStat label="Changes" value="34" detail="Detected across monitored areas" tone="green" />
+            <DashboardStat label="Pending" value="8" detail="Require analyst review" tone="amber" />
+          </div>
+
+          {/* Recent detections */}
+          <section className="mb-6 rounded-2xl border border-[rgba(125,171,204,0.16)] bg-[#0b2032] p-5">
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="text-xs font-semibold text-[#e7f1f8]">Recent Detections</div>
+                <div className="mt-1 text-[10px] text-[#6f8da3]">
+                  Latest changes requiring analyst attention
+                </div>
+              </div>
+              <span className="rounded-full bg-[#d8a63b]/10 px-2.5 py-1 text-[9px] font-semibold text-[#e8bd65]">
+                8 pending
+              </span>
+            </div>
+
+            <div className="mt-4 grid grid-cols-3 gap-3">
+              {[
+                ["Construction", "Narmada Basin — Sector A", "91%", "Review"],
+                ["Road Development", "Narmada Basin — Sector B", "87%", "Confirmed"],
+                ["Water Variation", "River Corridor — Sector D", "82%", "Review"],
+              ].map(([type, location, confidence, status]) => (
+                <div key={location} className="rounded-xl border border-[rgba(125,171,204,0.12)] bg-[#081a29] p-3">
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <div className="text-[10px] font-semibold text-[#e7f1f8]">{type}</div>
+                      <div className="mt-1 text-[9px] leading-4 text-[#6f8da3]">{location}</div>
+                    </div>
+                    <span className="text-xs font-bold text-[#8ed5ff]">{confidence}</span>
+                  </div>
+                  <div className="mt-3 flex items-center justify-between">
+                    <span className="text-[8px] uppercase tracking-wider text-[#58788d]">Status</span>
+                    <span className={`text-[9px] font-semibold ${
+                      status === "Confirmed" ? "text-[#63ddb2]" : "text-[#e8bd65]"
+                    }`}>
+                      {status}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
 
           {/* Search workspace */}
           <div className="grid grid-cols-[minmax(0,1fr)_330px] gap-6">
@@ -324,7 +372,7 @@ const filteredResults = useMemo(() => {
                 <div className="mb-4 flex items-center justify-between">
                   <div>
                     <div className="text-xs font-semibold text-[#e7f1f8]">
-                      Search Filters
+                      Monitoring Filters
                     </div>
 
                     <div className="mt-1 text-[10px] text-[#6f8da3]">
@@ -522,7 +570,7 @@ const filteredResults = useMemo(() => {
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-xs font-semibold text-[#e7f1f8]">
-                      Search Results
+                      Active Detections
                     </div>
 
                     <div className="mt-1 text-[10px] text-[#6f8da3]">
@@ -626,6 +674,39 @@ const filteredResults = useMemo(() => {
 /* ----------------------------- */
 /* Filter component               */
 /* ----------------------------- */
+
+function DashboardStat({
+  label,
+  value,
+  detail,
+  tone,
+}: {
+  label: string;
+  value: string;
+  detail: string;
+  tone: "blue" | "green" | "amber";
+}) {
+  const toneClass = {
+    blue: "bg-[#55b8f4]/10 text-[#8ed5ff]",
+    green: "bg-[#39c99a]/10 text-[#63ddb2]",
+    amber: "bg-[#d8a63b]/10 text-[#e8bd65]",
+  }[tone];
+
+  return (
+    <section className="rounded-2xl border border-[rgba(125,171,204,0.16)] bg-[#0b2032] p-5 shadow-[0_8px_24px_rgba(0,0,0,0.10)]">
+      <div className="flex items-start justify-between">
+        <div>
+          <div className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#6f8da3]">{label}</div>
+          <div className="mt-2 text-3xl font-semibold tracking-tight text-[#e7f1f8]">{value}</div>
+        </div>
+        <span className={`rounded-lg px-2.5 py-1.5 text-[8px] font-semibold uppercase tracking-wider ${toneClass}`}>
+          Active
+        </span>
+      </div>
+      <div className="mt-3 text-[10px] text-[#6f8da3]">{detail}</div>
+    </section>
+  );
+}
 
 function Filter({
   label,

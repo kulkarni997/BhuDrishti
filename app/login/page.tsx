@@ -1,111 +1,122 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const router = useRouter();
 
-  const [analystId, setAnalystId] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleLogin = () => {
-    if (!analystId || !password) return;
+  function handleLogin(e: FormEvent) {
+    e.preventDefault();
 
-    setLoading(true);
+    if (!username || !password) {
+      setError("Enter analyst credentials to continue.");
+      return;
+    }
 
-    setTimeout(() => {
-      router.push("/initializing");
-    }, 400);
-  };
+    setError("");
+    router.push("/initializing");
+  }
 
   return (
-    <main className="min-h-screen bg-[#080d12] text-white flex items-center justify-center px-6">
-      <div className="w-full max-w-md animate-fade-up">
+    <main className="login-page">
+      <div className="login-grid" />
 
-        {/* Brand */}
-        <div className="text-center mb-10">
-          <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl border border-[#263640] bg-[#0d141b]">
-            <div className="h-6 w-6 rounded-full border border-[#66d9c4] relative">
-              <span className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#66d9c4]" />
+      <div className="login-glow login-glow-one" />
+      <div className="login-glow login-glow-two" />
+
+      <section className="login-shell">
+        <div className="login-brand">
+          <div className="login-logo">
+            <div className="login-ring">
+              <span />
             </div>
           </div>
 
-          <h1 className="text-3xl font-semibold tracking-tight">
-            BhuDrishti
-          </h1>
-
-          <p className="mt-2 text-sm text-[#7f909d]">
-            Geospatial Intelligence Platform
-          </p>
+          <div>
+            <h1>BhuDrishti</h1>
+            <p>GEOSPATIAL INTELLIGENCE</p>
+          </div>
         </div>
 
-        {/* Login panel */}
-        <div className="rounded-2xl border border-[#1d2a34] bg-[#0d141b] p-7 shadow-2xl">
-          <div className="mb-7">
-            <h2 className="text-lg font-medium">
-              Analyst Access
-            </h2>
-
-            <p className="mt-1 text-sm text-[#7f909d]">
-              Enter your credentials to access the workspace.
-            </p>
-          </div>
-
-          <div className="space-y-5">
-
-            {/* Analyst ID */}
+        <div className="login-card">
+          <div className="login-card-header">
             <div>
-              <label className="mb-2 block text-xs font-medium uppercase tracking-wider text-[#7f909d]">
-                Analyst ID
-              </label>
+              <div className="login-eyebrow">
+                ANALYST ACCESS
+              </div>
 
-              <input
-                value={analystId}
-                onChange={(e) => setAnalystId(e.target.value)}
-                placeholder="Enter analyst ID"
-                className="w-full rounded-lg border border-[#26343e] bg-[#080d12] px-4 py-3 text-sm outline-none placeholder:text-[#52616c] focus:border-[#66d9c4]"
-              />
+              <h2>Secure Workspace</h2>
+
+              <p>
+                Access satellite imagery search and
+                multi-temporal analysis tools.
+              </p>
             </div>
 
-            {/* Password */}
-            <div>
-              <label className="mb-2 block text-xs font-medium uppercase tracking-wider text-[#7f909d]">
-                Password
-              </label>
+            <div className="login-status">
+              <span />
+              LOCAL
+            </div>
+          </div>
+
+          <form onSubmit={handleLogin} className="login-form">
+            <label>
+              <span>Analyst ID</span>
+
+              <input
+                type="text"
+                placeholder="Enter analyst ID"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                autoComplete="username"
+              />
+            </label>
+
+            <label>
+              <span>Access Key</span>
 
               <input
                 type="password"
+                placeholder="Enter access key"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter password"
-                className="w-full rounded-lg border border-[#26343e] bg-[#080d12] px-4 py-3 text-sm outline-none placeholder:text-[#52616c] focus:border-[#66d9c4]"
+                autoComplete="current-password"
               />
-            </div>
+            </label>
 
-            {/* Button */}
-            <button
-              onClick={handleLogin}
-              disabled={loading || !analystId || !password}
-              className="mt-2 w-full rounded-lg bg-[#66d9c4] px-4 py-3 text-sm font-semibold text-[#07100f] hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
-            >
-              {loading
-                ? "Authenticating..."
-                : "Enter Analyst Workspace"}
+            {error && (
+              <div className="login-error">
+                {error}
+              </div>
+            )}
+
+            <button type="submit" className="login-button">
+              <span>Enter Analyst Workspace</span>
+              <span className="login-arrow">→</span>
             </button>
+          </form>
+
+          <div className="login-card-footer">
+            <span>
+              <span className="secure-dot" />
+              SECURE LOCAL SESSION
+            </span>
+
+            <span>BH-01</span>
           </div>
         </div>
 
-        {/* Footer */}
-        <div className="mt-6 flex items-center justify-center gap-2 text-[10px] uppercase tracking-widest text-[#52616c]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#66d9c4]" />
-          Secure Analyst Access
-          <span>•</span>
-          Local Demonstration Environment
+        <div className="login-footer">
+          <span>BHUVISDRISHTI ANALYTICS SYSTEM</span>
+          <span>OFFLINE ANALYSIS ENVIRONMENT</span>
+          <span>v1.0</span>
         </div>
-
-      </div>
+      </section>
     </main>
   );
 }

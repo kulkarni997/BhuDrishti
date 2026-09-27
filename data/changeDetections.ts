@@ -2,8 +2,8 @@ export const changeDetections = [
   {
     id: "change-001",
     siteId: "site-001",
-    beforeDate: "Jan 2021",
-    afterDate: "Jan 2025",
+    beforeDate: "2021",
+    afterDate: "2025",
     changeCount: 3,
     changes: [
       {
@@ -23,7 +23,8 @@ export const changeDetections = [
       },
     ],
     falseAlarmRisk: "medium",
-    falseAlarmReason: "Partial cloud coverage detected in the after image.",
+    falseAlarmReason:
+      "Partial cloud coverage detected in the after image.",
     alignmentError: 2.3,
   },
 ];

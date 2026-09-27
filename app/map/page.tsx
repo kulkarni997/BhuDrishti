@@ -1,14 +1,44 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { searchResults } from "@/data/searchResults";
 import { similarLocations } from "@/data/similarLocations";
+import {
+  getInvestigation,
+  type InvestigationState,
+} from "@/lib/investigation";
 import Sidebar from "@/components/layout/Sidebar";
 import Topbar from "@/components/layout/Topbar";
 
 type MarkerType = "search" | "change" | "similar";
 
+const searchMarkerPositions: Record<
+  string,
+  { left: number; top: number }
+> = {
+  "site-001": { left: 38, top: 38 },
+  "site-002": { left: 53, top: 48 },
+  "site-003": { left: 66, top: 32 },
+  "site-004": { left: 30, top: 61 },
+};
+
+const similarMarkerPositions: Record<
+  string,
+  { left: number; top: number }
+> = {
+  "similar-001": { left: 58, top: 58 },
+  "similar-002": { left: 70, top: 39 },
+  "similar-003": { left: 42, top: 68 },
+  "similar-004": { left: 63, top: 23 },
+};
+
 export default function MapPage() {
+  const router = useRouter();
+
+  const [investigation, setInvestigation] =
+    useState<InvestigationState | null>(null);
+
   const [activeLayers, setActiveLayers] = useState({
     search: true,
     changes: true,
@@ -19,10 +49,18 @@ export default function MapPage() {
   const [selectedMarker, setSelectedMarker] = useState<{
     type: MarkerType;
     id: string;
-  } | null>({
-    type: "change",
-    id: "site-001",
-  });
+  } | null>(null);
+
+  useEffect(() => {
+    const active = getInvestigation();
+
+    setInvestigation(active);
+
+    setSelectedMarker({
+      type: "change",
+      id: active.siteId,
+    });
+  }, []);
 
   const toggleLayer = (layer: keyof typeof activeLayers) => {
     setActiveLayers((current) => ({
@@ -31,15 +69,36 @@ export default function MapPage() {
     }));
   };
 
+  const activeSearch = searchResults.find(
+    (result) => result.id === investigation?.siteId
+  );
+
   const selectedSearch =
     selectedMarker?.type === "search"
-      ? searchResults.find((item) => item.id === selectedMarker.id)
+      ? searchResults.find(
+          (item) => item.id === selectedMarker.id
+        )
       : null;
 
   const selectedSimilar =
     selectedMarker?.type === "similar"
-      ? similarLocations.find((item) => item.id === selectedMarker.id)
+      ? similarLocations.find(
+          (item) => item.id === selectedMarker.id
+        )
       : null;
+
+  const location =
+    investigation?.location || "Narmada Basin — Sector A";
+
+  const changeType =
+    investigation?.changeType || "Construction";
+
+  const confidence =
+    investigation?.confidence || 91;
+
+  const activePosition =
+    searchMarkerPositions[investigation?.siteId || "site-001"] ||
+    searchMarkerPositions["site-001"];
 
   return (
     <main className="min-h-screen bg-[#f4f8fc] text-[#16324f]">
@@ -60,15 +119,50 @@ export default function MapPage() {
             </h1>
 
             <p className="mt-2 text-sm text-[#71869b]">
-              Explore search results, detected changes, areas of interest and
-              similar locations.
+              Explore search results, detected changes, areas of
+              interest and similar locations.
             </p>
           </div>
 
-          {/* Map Workspace */}
+          {/* Active Investigation */}
+          <div className="mb-5 rounded-xl border border-[#cfe0f0] bg-white px-5 py-4">
+            <div className="flex items-center justify-between">
+
+              <div>
+                <div className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#1677e8]">
+                  Active Investigation
+                </div>
+
+                <div className="mt-1 text-sm font-semibold text-[#16324f]">
+                  {location}
+                </div>
+              </div>
+
+              <div className="flex items-center gap-6">
+
+                <MapHeaderMeta
+                  label="Type"
+                  value={changeType}
+                />
+
+                <MapHeaderMeta
+                  label="Confidence"
+                  value={`${confidence}%`}
+                />
+
+                <MapHeaderMeta
+                  label="Period"
+                  value="2021 → 2025"
+                />
+
+              </div>
+            </div>
+          </div>
+
+          {/* Map */}
           <section className="relative h-[650px] overflow-hidden rounded-2xl border border-[#dce6f0] bg-white shadow-sm">
 
-            {/* Satellite Map */}
+            {/* Satellite imagery */}
             <div className="absolute inset-0">
               <img
                 src="/satellite/base-map.png"
@@ -76,81 +170,96 @@ export default function MapPage() {
                 className="h-full w-full object-cover"
               />
 
-              {/* Subtle map overlay */}
               <div className="absolute inset-0 bg-white/5" />
             </div>
 
             {/* AOI */}
             {activeLayers.aoi && (
               <div className="pointer-events-none absolute left-[24%] top-[25%] h-[48%] w-[46%] rounded-[4px] border-2 border-dashed border-[#1677e8] bg-[#1677e8]/5">
+
                 <div className="absolute -top-7 left-0 rounded-md border border-[#b8d2ed] bg-white/95 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-wider text-[#1677e8] shadow-sm">
                   Active AOI
                 </div>
+
               </div>
             )}
 
-            {/* Search Markers */}
+            {/* Search result markers */}
             {activeLayers.search &&
-              searchResults.map((result, index) => (
-                <MapMarker
-                  key={result.id}
-                  left={[38, 53, 66, 30][index]}
-                  top={[38, 48, 32, 61][index]}
-                  type="search"
-                  selected={
-                    selectedMarker?.type === "search" &&
-                    selectedMarker.id === result.id
-                  }
-                  onClick={() =>
-                    setSelectedMarker({
-                      type: "search",
-                      id: result.id,
-                    })
-                  }
-                />
-              ))}
+              searchResults.map((result) => {
+                const position =
+                  searchMarkerPositions[result.id];
 
-            {/* Change Marker */}
-            {activeLayers.changes && (
+                if (!position) return null;
+
+                return (
+                  <MapMarker
+                    key={result.id}
+                    left={position.left}
+                    top={position.top}
+                    type="search"
+                    selected={
+                      selectedMarker?.type === "search" &&
+                      selectedMarker.id === result.id
+                    }
+                    onClick={() =>
+                      setSelectedMarker({
+                        type: "search",
+                        id: result.id,
+                      })
+                    }
+                  />
+                );
+              })}
+
+            {/* Active detected change */}
+            {activeLayers.changes && activeSearch && (
               <MapMarker
-                left={47}
-                top={46}
+                left={activePosition.left}
+                top={activePosition.top}
                 type="change"
                 selected={
                   selectedMarker?.type === "change" &&
-                  selectedMarker.id === "site-001"
+                  selectedMarker.id === investigation?.siteId
                 }
                 onClick={() =>
                   setSelectedMarker({
                     type: "change",
-                    id: "site-001",
+                    id: investigation?.siteId || "site-001",
                   })
                 }
               />
             )}
 
-            {/* Similar Location Markers */}
+            {/* Similar location markers */}
             {activeLayers.similar &&
-              similarLocations.map((location, index) => (
-                <MapMarker
-                  key={location.id}
-                  left={[58, 70, 42, 63][index]}
-                  top={[58, 39, 68, 23][index]}
-                  type="similar"
-                  selected={
-                    selectedMarker?.type === "similar" &&
-                    selectedMarker.id === location.id
-                  }
-                  onClick={() =>
-                    setSelectedMarker({
-                      type: "similar",
-                      id: location.id,
-                    })
-                  }
-                />
-              ))}
+              similarLocations.map((location) => {
+                const position =
+                  similarMarkerPositions[location.id];
 
-            {/* Map Controls */}
+                if (!position) return null;
+
+                return (
+                  <MapMarker
+                    key={location.id}
+                    left={position.left}
+                    top={position.top}
+                    type="similar"
+                    selected={
+                      selectedMarker?.type === "similar" &&
+                      selectedMarker.id === location.id
+                    }
+                    onClick={() =>
+                      setSelectedMarker({
+                        type: "similar",
+                        id: location.id,
+                      })
+                    }
+                  />
+                );
+              })}
+
+            {/* Layer Controls */}
             <div className="absolute right-5 top-5 w-52 rounded-xl border border-white/60 bg-white/95 p-3 shadow-lg backdrop-blur">
 
               <div className="mb-3 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#71869b]">
@@ -184,12 +293,14 @@ export default function MapPage() {
                 marker="aoi"
                 onClick={() => toggleLayer("aoi")}
               />
+
             </div>
 
-            {/* Selected Investigation Panel */}
+            {/* Selected Location */}
             <div className="absolute bottom-5 left-5 w-[340px] rounded-2xl border border-white/70 bg-white/95 p-5 shadow-xl backdrop-blur">
 
               <div className="flex items-start justify-between">
+
                 <div>
                   <div className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#1677e8]">
                     Selected Location
@@ -198,8 +309,9 @@ export default function MapPage() {
                   <h2 className="mt-1 text-sm font-semibold text-[#16324f]">
                     {selectedMarker?.type === "similar"
                       ? selectedSimilar?.location
-                      : selectedSearch?.location ||
-                        "Narmada Basin — Sector A"}
+                      : selectedMarker?.type === "search"
+                        ? selectedSearch?.location
+                        : location}
                   </h2>
                 </div>
 
@@ -208,8 +320,9 @@ export default function MapPage() {
                     ? `${selectedSimilar?.similarity}% Similar`
                     : selectedMarker?.type === "search"
                       ? `${selectedSearch?.relevance}% Match`
-                      : "91% Confidence"}
+                      : `${confidence}% Confidence`}
                 </span>
+
               </div>
 
               <div className="mt-4 grid grid-cols-2 gap-3 border-t border-[#e3eaf1] pt-4">
@@ -220,8 +333,9 @@ export default function MapPage() {
                     selectedMarker?.type === "similar"
                       ? "Similar Location"
                       : selectedMarker?.type === "search"
-                        ? selectedSearch?.changeType || "Search Result"
-                        : "Construction"
+                        ? selectedSearch?.changeType ||
+                          "Search Result"
+                        : changeType
                   }
                 />
 
@@ -230,7 +344,9 @@ export default function MapPage() {
                   value={
                     selectedMarker?.type === "similar"
                       ? selectedSimilar?.date || "—"
-                      : selectedSearch?.date || "15 Jan 2026"
+                      : selectedSearch?.date ||
+                        activeSearch?.date ||
+                        "15 Jan 2026"
                   }
                 />
 
@@ -239,32 +355,39 @@ export default function MapPage() {
                   value={
                     selectedMarker?.type === "similar"
                       ? selectedSimilar?.sensor || "—"
-                      : selectedSearch?.sensor || "Sentinel-2"
+                      : selectedSearch?.sensor ||
+                        activeSearch?.sensor ||
+                        "Sentinel-2"
                   }
                 />
 
                 <MapMeta
                   label="Resolution"
                   value={
-                    selectedSearch?.resolution || "10 m"
+                    selectedSearch?.resolution ||
+                    activeSearch?.resolution ||
+                    "10 m"
                   }
                 />
+
               </div>
 
               <button
                 onClick={() => {
-                  window.location.href =
-                    selectedMarker?.type === "similar"
-                      ? "/similar-locations"
-                      : "/change-detection";
+                  if (selectedMarker?.type === "similar") {
+                    router.push("/similar-locations");
+                  } else {
+                    router.push("/change-detection");
+                  }
                 }}
                 className="mt-4 w-full rounded-lg bg-[#1677e8] py-2.5 text-[10px] font-semibold text-white hover:bg-[#1268cf]"
               >
                 View Investigation →
               </button>
+
             </div>
 
-            {/* North Indicator */}
+            {/* North indicator */}
             <div className="absolute left-5 top-5 flex h-11 w-11 items-center justify-center rounded-full border border-white/70 bg-white/90 text-[10px] font-bold text-[#16324f] shadow-md">
               N
             </div>
@@ -273,6 +396,7 @@ export default function MapPage() {
             <div className="absolute bottom-2 right-3 rounded bg-white/85 px-2 py-1 text-[8px] text-[#71869b]">
               Satellite imagery · Prototype visualization
             </div>
+
           </section>
         </div>
       </section>
@@ -370,6 +494,26 @@ function LayerToggle({
         />
       </span>
     </button>
+  );
+}
+
+function MapHeaderMeta({
+  label,
+  value,
+}: {
+  label: string;
+  value: string;
+}) {
+  return (
+    <div className="text-right">
+      <div className="text-[8px] font-semibold uppercase tracking-wider text-[#8a9bac]">
+        {label}
+      </div>
+
+      <div className="mt-1 text-[10px] font-semibold text-[#496784]">
+        {value}
+      </div>
+    </div>
   );
 }
 

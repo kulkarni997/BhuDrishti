@@ -1,34 +1,48 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Sidebar from "@/components/layout/Sidebar";
-import Topbar from "@/components/layout/Topbar";
-import { changeDetections } from "@/data/changeDetections";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { changeDetections } from "@/data/changeDetections";
 import {
   getInvestigation,
   type InvestigationState,
 } from "@/lib/investigation";
+import Sidebar from "@/components/layout/Sidebar";
+import Topbar from "@/components/layout/Topbar";
 
 export default function ChangeDetectionPage() {
-  const detection = changeDetections[0];
-
-  const [compared, setCompared] = useState(false);
-  const [viewMode, setViewMode] = useState<"side-by-side" | "overlay">("side-by-side");
-  const [opacity, setOpacity] = useState(50);
-  const [confirmed, setConfirmed] = useState(false);
-  const [aligning, setAligning] = useState(false);
-  const [aligned, setAligned] = useState(false);
-  const [alignmentError, setAlignmentError] = useState(detection.alignmentError);
-  const [showMask, setShowMask] = useState(false);
-  const [confirmedAt, setConfirmedAt] = useState<string | null>(null);
   const router = useRouter();
-  const [investigation, setInvestigation] =
-  useState<InvestigationState | null>(null);
 
-  useEffect(() => {
-  setInvestigation(getInvestigation());
-}, []);
+  const [investigation] = useState<InvestigationState>(
+    getInvestigation()
+  );
+
+  const detection =
+    changeDetections.find(
+      (item) => item.siteId === investigation.siteId
+    ) || changeDetections[0];
+
+  const [viewMode, setViewMode] = useState<"side" | "overlay">("side");
+  const [opacity, setOpacity] = useState(50);
+  const [aligning, setAligning] = useState(false);
+  const [alignmentError, setAlignmentError] = useState(
+    detection.alignmentError
+  );
+  const [showMask, setShowMask] = useState(false);
+  const [decision, setDecision] = useState<
+    "confirmed" | "rejected" | null
+  >(null);
+
+  const runAlignment = () => {
+    if (aligning) return;
+
+    setAligning(true);
+
+    setTimeout(() => {
+      setAlignmentError(0.8);
+      setAligning(false);
+    }, 1500);
+  };
 
   return (
     <main className="min-h-screen bg-[#f4f8fc] text-[#16324f]">
@@ -37,88 +51,103 @@ export default function ChangeDetectionPage() {
 
       <section className="ml-64 pt-20">
         <div className="p-7">
+
           {/* Header */}
           <div className="mb-6 flex items-end justify-between">
             <div>
-              <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#71869b]">
-                Analyst Workspace
+              <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#1677e8]">
+                Temporal Analysis
               </div>
 
               <h1 className="mt-2 text-2xl font-semibold tracking-tight text-[#16324f]">
                 Change Detection
               </h1>
 
-              <p className="mt-1 text-sm text-[#71869b]">
-                Compare multi-temporal imagery and review detected changes.
+              <p className="mt-2 text-sm text-[#71869b]">
+                Compare multi-temporal satellite imagery and validate
+                detected changes.
               </p>
             </div>
 
-            <div className="rounded-lg border border-[#dce6f0] bg-white px-4 py-2">
-              <div className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#71869b]">
-                Selected Area
+            <div className="rounded-lg border border-[#cfe0f0] bg-white px-4 py-2.5">
+              <div className="text-[8px] font-semibold uppercase tracking-[0.18em] text-[#71869b]">
+                Active Investigation
               </div>
 
-              <div className="mt-1 text-xs font-semibold text-[#163b67]">
-                Narmada Basin — Sector A
+              <div className="mt-1 text-xs font-semibold text-[#16324f]">
+                {investigation.location}
               </div>
             </div>
           </div>
 
-          {/* Area + dates */}
-          <section className="mb-5 rounded-2xl border border-[#dce6f0] bg-white p-5">
-            <div className="grid grid-cols-[1.4fr_1fr_1fr_auto] items-end gap-4">
-              <div>
-                <label className="mb-1.5 block text-[9px] font-semibold uppercase tracking-[0.14em] text-[#71869b]">
-                  Area of Interest
-                </label>
+          {/* Temporal Selection */}
+          <div className="mb-5 rounded-2xl border border-[#dce6f0] bg-white p-5">
 
-                <div className="flex h-11 items-center rounded-lg border border-[#dce6f0] bg-[#f9fbfd] px-3 text-xs font-medium text-[#496784]">
-                  {investigation?.location || "Narmada Basin — Sector A"}
-                </div>
-              </div>
+            <div className="grid grid-cols-[1.3fr_1fr_1fr_auto] items-end gap-5">
 
-              <DateField label="Before Date" value="Jan 2024" />
-              <DateField label="After Date" value="Jan 2026" />
+              <Field
+                label="Area of Interest"
+                value={investigation.location}
+              />
+
+              <Field
+                label="Before Date"
+                value="2021"
+              />
+
+              <Field
+                label="After Date"
+                value="2025"
+              />
 
               <button
-                onClick={() => setCompared(true)}
-                className="h-11 rounded-lg bg-[#1677e8] px-7 text-xs font-semibold text-white hover:bg-[#1268cf]"
+                onClick={() =>
+                  document
+                    .getElementById("comparison")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="h-[55px] rounded-lg bg-[#1677e8] px-6 text-xs font-semibold text-white hover:bg-[#1268cf]"
               >
-                {compared ? "Compared" : "Compare"}
+                Compare
               </button>
-            </div>
-          </section>
 
-          {/* Imagery comparison */}
-          <section className="mb-5 overflow-hidden rounded-2xl border border-[#dce6f0] bg-white">
-            <div className="flex h-14 items-center justify-between border-b border-[#dce6f0] px-5">
+            </div>
+          </div>
+
+          {/* Comparison */}
+          <section
+            id="comparison"
+            className="mb-5 rounded-2xl border border-[#dce6f0] bg-white p-5"
+          >
+            <div className="mb-4 flex items-center justify-between">
+
               <div>
-                <div className="text-xs font-semibold text-[#16324f]">
+                <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#71869b]">
                   Temporal Comparison
                 </div>
 
-                <div className="mt-0.5 text-[10px] text-[#71869b]">
-                  Satellite imagery comparison for the selected AOI
+                <div className="mt-1 text-sm font-semibold text-[#16324f]">
+                  {investigation.location}
                 </div>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex rounded-lg border border-[#dce6f0] bg-[#f7faff] p-1">
                 <button
-                  onClick={() => setViewMode("side-by-side")}
-                  className={`rounded-md px-3 py-1.5 text-[10px] font-semibold ${
-                    viewMode === "side-by-side"
-                      ? "bg-[#eaf3ff] text-[#1677e8]"
+                  onClick={() => setViewMode("side")}
+                  className={`rounded-md px-4 py-2 text-[10px] font-semibold ${
+                    viewMode === "side"
+                      ? "bg-white text-[#1677e8] shadow-sm"
                       : "text-[#71869b]"
                   }`}
                 >
-                  Before / After
+                  Side by Side
                 </button>
 
                 <button
                   onClick={() => setViewMode("overlay")}
-                  className={`rounded-md px-3 py-1.5 text-[10px] font-semibold ${
+                  className={`rounded-md px-4 py-2 text-[10px] font-semibold ${
                     viewMode === "overlay"
-                      ? "bg-[#eaf3ff] text-[#1677e8]"
+                      ? "bg-white text-[#1677e8] shadow-sm"
                       : "text-[#71869b]"
                   }`}
                 >
@@ -127,52 +156,48 @@ export default function ChangeDetectionPage() {
               </div>
             </div>
 
-            {viewMode === "side-by-side" ? (
-              <div className="grid grid-cols-2 gap-px bg-[#dce6f0]">
-                <ImagePanel
-  label="BEFORE"
-  date="2021"
-  image="/satellite/before/2021.png"
-/>
+            {viewMode === "side" ? (
+              <div className="grid grid-cols-2 gap-4">
 
                 <ImagePanel
-  label="AFTER"
-  date="2025"
-  image="/satellite/after/2025.png"
-/>
+                  title="Before"
+                  date="2021"
+                  src="/satellite/before/2021.png"
+                />
+
+                <ImagePanel
+                  title="After"
+                  date="2025"
+                  src="/satellite/after/2025.png"
+                />
+
               </div>
             ) : (
-              <div className="relative h-[480px] overflow-hidden bg-[#dfe8ef]">
+              <div className="relative h-[440px] overflow-hidden rounded-xl border border-[#dce6f0]">
+
                 <img
-                  src="/satellite/base-map.png"
+                  src="/satellite/before/2021.png"
                   alt="Before satellite imagery"
                   className="absolute inset-0 h-full w-full object-cover"
                 />
 
-                <div
-                  className="absolute inset-0 overflow-hidden"
-                  style={{ width: `${opacity}%` }}
-                >
-                  <img
-                    src="/satellite/base-map.png"
-                    alt="After satellite imagery"
-                    className="h-full w-full max-w-none object-cover"
-                    style={{
-                      width: `${100 / (opacity / 100)}%`,
-                    }}
-                  />
+                <img
+                  src="/satellite/after/2025.png"
+                  alt="After satellite imagery"
+                  className="absolute inset-0 h-full w-full object-cover"
+                  style={{
+                    opacity: opacity / 100,
+                  }}
+                />
+
+                <div className="absolute left-4 top-4 rounded-md bg-white/95 px-3 py-2 text-[10px] font-semibold text-[#16324f] shadow">
+                  2021 → 2025
                 </div>
 
-                <div className="absolute left-1/2 top-0 h-full w-px bg-white shadow-md" />
-
-                <div className="absolute left-5 top-5 rounded-md bg-[#163b67]/90 px-3 py-1.5 text-[9px] font-semibold text-white">
-                  BEFORE / AFTER OVERLAY
-                </div>
-
-                <div className="absolute bottom-5 left-1/2 w-[300px] -translate-x-1/2 rounded-xl bg-white/95 p-4 shadow-lg backdrop-blur">
-                  <div className="flex justify-between text-[9px] font-semibold uppercase tracking-wider text-[#71869b]">
+                <div className="absolute bottom-4 left-1/2 w-64 -translate-x-1/2 rounded-xl border border-white/60 bg-white/95 px-4 py-3 shadow-lg">
+                  <div className="mb-2 flex justify-between text-[9px] font-semibold text-[#71869b]">
                     <span>Before</span>
-                    <span>After</span>
+                    <span>After opacity</span>
                   </div>
 
                   <input
@@ -180,93 +205,75 @@ export default function ChangeDetectionPage() {
                     min="0"
                     max="100"
                     value={opacity}
-                    onChange={(e) => setOpacity(Number(e.target.value))}
-                    className="mt-3 w-full"
+                    onChange={(e) =>
+                      setOpacity(Number(e.target.value))
+                    }
+                    className="w-full"
                   />
                 </div>
+
               </div>
             )}
-
-            <div className="flex items-center justify-between border-t border-[#dce6f0] px-5 py-3">
-              <div className="flex items-center gap-5 text-[9px] text-[#71869b]">
-                <span>
-                  Sensor:{" "}
-                  <strong className="text-[#496784]">Sentinel-2</strong>
-                </span>
-
-                <span>
-                  Resolution:{" "}
-                  <strong className="text-[#496784]">10 m</strong>
-                </span>
-              </div>
-
-              <div className="text-[9px] text-[#71869b]">
-                Alignment error:{" "}
-                <strong className="text-[#e3a52f]">
-                  {detection.alignmentError} px
-                </strong>
-              </div>
-            </div>
           </section>
 
-          {/* Bottom analysis */}
-          <div className="grid grid-cols-[1fr_370px] gap-5">
-            {/* Detected changes */}
+          {/* Detection Results */}
+          <div className="grid grid-cols-[1.5fr_1fr] gap-5">
+
+            {/* Changes */}
             <section className="rounded-2xl border border-[#dce6f0] bg-white p-5">
-              <div className="mb-5 flex items-center justify-between">
+
+              <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-xs font-semibold text-[#16324f]">
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#71869b]">
                     Detected Changes
                   </div>
 
-                  <div className="mt-1 text-[10px] text-[#71869b]">
-                    Candidate changes identified between the two dates.
+                  <div className="mt-1 text-sm font-semibold text-[#16324f]">
+                    {detection.changeCount} significant changes detected
                   </div>
                 </div>
 
-                <div
-                  className={`rounded-full px-3 py-1.5 text-[9px] font-semibold ${
-                    compared
-                      ? "bg-[#edf8f4] text-[#15906b]"
-                      : "bg-[#f3f6f9] text-[#71869b]"
-                  }`}
-                >
-                  {compared ? "Analysis Complete" : "Awaiting Comparison"}
-                </div>
+                <span className="rounded-full bg-[#eaf3ff] px-3 py-1 text-[9px] font-semibold text-[#1677e8]">
+                  AI Analysis
+                </span>
               </div>
 
-              <div className="space-y-3">
+              <div className="mt-5 space-y-3">
                 {detection.changes.map((change) => (
                   <div
                     key={change.type}
-                    className="rounded-xl border border-[#e2eaf1] bg-[#fbfdff] p-4"
+                    className="rounded-xl border border-[#e1e9f1] bg-[#fbfdff] p-4"
                   >
                     <div className="flex items-center justify-between">
+
                       <div>
                         <div className="text-xs font-semibold text-[#16324f]">
                           {change.type}
                         </div>
 
                         <div className="mt-1 text-[10px] text-[#71869b]">
-                          Estimated affected area: {change.area}
+                          Estimated affected area · {change.area}
                         </div>
                       </div>
 
                       <div className="text-right">
-                        <div className="text-base font-bold text-[#1677e8]">
+                        <div className="text-sm font-bold text-[#1677e8]">
                           {change.confidence}%
                         </div>
 
                         <div className="text-[8px] uppercase tracking-wider text-[#8a9bac]">
-                          confidence
+                          Confidence
                         </div>
                       </div>
+
                     </div>
 
-                    <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[#eaf0f5]">
+                    <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[#e6edf4]">
                       <div
                         className="h-full rounded-full bg-[#1677e8]"
-                        style={{ width: `${change.confidence}%` }}
+                        style={{
+                          width: `${change.confidence}%`,
+                        }}
                       />
                     </div>
                   </div>
@@ -274,231 +281,200 @@ export default function ChangeDetectionPage() {
               </div>
             </section>
 
-            {/* Review panel */}
-            <section className="space-y-5">
-              {/* Registration */}
-<div className="rounded-2xl border border-[#dce6f0] bg-white p-5">
-  <div className="flex items-start justify-between">
-    <div>
-      <div className="text-xs font-semibold text-[#16324f]">
-        Image Registration
-      </div>
+            {/* Registration */}
+            <section className="rounded-2xl border border-[#dce6f0] bg-white p-5">
 
-      <div className="mt-1 text-[10px] text-[#71869b]">
-        Spatial alignment between temporal images.
-      </div>
-    </div>
-
-    <div
-      className={`rounded-full px-2.5 py-1 text-[9px] font-semibold ${
-        aligned
-          ? "bg-[#edf8f4] text-[#15906b]"
-          : "bg-[#fff7e7] text-[#b47a18]"
-      }`}
-    >
-      {aligned ? "Aligned" : "Review"}
-    </div>
-  </div>
-
-  <div className="mt-4 rounded-xl bg-[#f8fafc] p-3">
-    <div className="flex items-center justify-between">
-      <span className="text-[10px] text-[#71869b]">
-        Alignment error
-      </span>
-
-      <span
-        className={`text-xs font-bold ${
-          aligned ? "text-[#15906b]" : "text-[#b47a18]"
-        }`}
-      >
-        {alignmentError} px
-      </span>
-    </div>
-
-    <button
-      disabled={aligning || aligned}
-      onClick={() => {
-        setAligning(true);
-
-        setTimeout(() => {
-          setAlignmentError(0.8);
-          setAligned(true);
-          setAligning(false);
-        }, 1500);
-      }}
-      className={`mt-3 w-full rounded-lg border py-2 text-[10px] font-semibold ${
-        aligned
-          ? "border-[#bfe3d5] bg-[#edf8f4] text-[#15906b]"
-          : "border-[#cdddea] bg-white text-[#1677e8] hover:bg-[#f7fbff]"
-      }`}
-    >
-      {aligning
-        ? "Aligning Images..."
-        : aligned
-          ? "Images Aligned"
-          : "Auto Align Images"}
-    </button>
-  </div>
-</div>
-
-              {/* False alarm */}
-              <div className="rounded-2xl border border-[#eadfca] bg-[#fffdf8] p-5">
-                <div className="flex items-start gap-3">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#fff1cf] text-sm text-[#b47a18]">
-                    !
-                  </div>
-
-                  <div>
-                    <div className="text-xs font-semibold text-[#684f20]">
-                      Potential False Alarm
-                    </div>
-
-                    <div className="mt-1 text-[10px] leading-4 text-[#806d4a]">
-                      {detection.falseAlarmReason}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-4 rounded-lg border border-[#eadfca] bg-white p-3">
-                  <div className="text-[9px] font-semibold uppercase tracking-wider text-[#8d7955]">
-                    Risk Level
-                  </div>
-
-                  <div className="mt-1 text-xs font-bold uppercase text-[#b47a18]">
-                    {detection.falseAlarmRisk}
-                  </div>
-                </div>
-
-                <div className="mt-4 grid grid-cols-2 gap-2">
-                  <button className="rounded-lg border border-[#d7cdbb] bg-white py-2 text-[10px] font-semibold text-[#684f20]">
-                    Review Images
-                  </button>
-
-                  <button
-  onClick={() => setShowMask((value) => !value)}
-  className={`rounded-lg border py-2 text-[10px] font-semibold ${
-    showMask
-      ? "border-[#b47a18] bg-[#fff1cf] text-[#8d651b]"
-      : "border-[#d7cdbb] bg-white text-[#684f20]"
-  }`}
->
-  {showMask ? "Hide Mask" : "View Mask"}
-</button>
-                </div>
+              <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#71869b]">
+                Image Registration
               </div>
 
-              {showMask && (
-  <div className="overflow-hidden rounded-2xl border border-[#d7cdbb] bg-white shadow-sm animate-fade-up">
-    <div className="flex items-center justify-between border-b border-[#eadfca] px-5 py-4">
-      <div>
-        <div className="text-xs font-semibold text-[#684f20]">
-          Change Detection Mask
-        </div>
+              <h2 className="mt-1 text-sm font-semibold text-[#16324f]">
+                Spatial Alignment
+              </h2>
 
-        <div className="mt-1 text-[10px] text-[#806d4a]">
-          Candidate change regions identified for analyst review.
-        </div>
-      </div>
+              <p className="mt-2 text-[10px] leading-5 text-[#71869b]">
+                Align the before and after imagery before validating
+                detected changes.
+              </p>
 
-      <div className="rounded-full bg-[#fff1cf] px-2.5 py-1 text-[9px] font-semibold text-[#b47a18]">
-        Review Required
-      </div>
-    </div>
+              <div className="mt-5 rounded-xl border border-[#dce6f0] bg-[#f8fbff] p-4">
 
-    <div className="relative h-64 overflow-hidden bg-[#182b32]">
-      <img
-        src="/satellite/after/2025.png"
-        alt="Satellite change detection mask"
-        className="absolute inset-0 h-full w-full object-cover"
-      />
+                <div className="flex items-center justify-between">
+                  <span className="text-[9px] font-semibold uppercase tracking-wider text-[#71869b]">
+                    Registration Error
+                  </span>
 
-      {/* Simulated detection regions */}
-      <div className="absolute left-[42%] top-[35%] h-16 w-24 rounded border-2 border-[#f0b429] bg-[#f0b429]/25" />
-
-      <div className="absolute left-[58%] top-[54%] h-10 w-20 rounded border-2 border-[#e3a52f] bg-[#e3a52f]/20" />
-
-      <div className="absolute left-4 bottom-4 rounded-md bg-[#16324f]/90 px-3 py-2 text-[9px] text-white backdrop-blur">
-        Highlighted regions indicate detected change
-      </div>
-    </div>
-  </div>
-)}
-
-              {/* Decision */}
-              <div className="rounded-2xl border border-[#dce6f0] bg-white p-5">
-                <div className="text-xs font-semibold text-[#16324f]">
-                  Analyst Decision
+                  <span
+                    className={`text-sm font-bold ${
+                      alignmentError <= 1
+                        ? "text-[#18a67a]"
+                        : "text-[#e3a52f]"
+                    }`}
+                  >
+                    {alignmentError.toFixed(1)} px
+                  </span>
                 </div>
 
-                <div className="mt-1 text-[10px] text-[#71869b]">
-                  Record the review outcome for this detection.
+                <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[#e5edf4]">
+                  <div
+                    className="h-full rounded-full bg-[#18a67a]"
+                    style={{
+                      width: `${Math.max(
+                        15,
+                        100 - alignmentError * 15
+                      )}%`,
+                    }}
+                  />
                 </div>
 
-                {confirmed ? (
-                  <div className="mt-4 rounded-xl border border-[#bfe3d5] bg-[#edf8f4] p-4">
-  <div className="flex items-center justify-between">
-    <div>
-      <div className="text-xs font-semibold text-[#15906b]">
-        Change Confirmed
-      </div>
+                <button
+                  onClick={runAlignment}
+                  disabled={aligning}
+                  className="mt-4 w-full rounded-lg border border-[#bcd3eb] bg-white py-2.5 text-[10px] font-semibold text-[#1677e8] hover:bg-[#f3f8fe] disabled:opacity-60"
+                >
+                  {aligning ? "Aligning Imagery…" : "Auto Align"}
+                </button>
 
-                  <button
-  onClick={() => router.push("/similar-locations")}
-  className="rounded-lg border border-[#cfe0f0] bg-white px-5 py-2.5 text-[10px] font-semibold text-[#1677e8] hover:border-[#9fc4ed] hover:bg-[#f7fbff]"
->
-  Find Similar Locations →
-</button>
-      
-      <div className="mt-1 text-[9px] text-[#4e806f]">
-        Construction — {detection.changes[0].confidence}% confidence
-      </div>
-    </div>
-
-    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#15906b]">
-      ✓
-    </div>
-  </div>
-
-  <div className="mt-3 border-t border-[#cfe7dc] pt-3 text-[9px] text-[#71869b]">
-    Confirmed at {confirmedAt}
-  </div>
-</div>
-                ) : (
-                  <div className="mt-4 grid grid-cols-2 gap-2">
-                    <button
-                      onClick={() => {
-  setConfirmed(true);
-  setConfirmedAt(
-    new Date().toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-    })
-  );
-}}
-                      className="rounded-lg bg-[#15906b] py-2.5 text-[10px] font-semibold text-white hover:bg-[#11845f]"
-                    >
-                      Confirm Change
-                    </button>
-
-                    <button className="rounded-lg border border-[#dce6f0] bg-white py-2.5 text-[10px] font-semibold text-[#71869b] hover:bg-[#f8fafc]">
-                      Reject
-                    </button>
-                  </div>
-                )}
               </div>
             </section>
           </div>
+
+          {/* False Alarm */}
+          <section className="mt-5 rounded-2xl border border-[#ead9b3] bg-[#fffaf0] p-5">
+
+            <div className="flex items-start justify-between">
+
+              <div className="flex gap-4">
+
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#f9e8bb] text-[#b77c12]">
+                  !
+                </div>
+
+                <div>
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#b77c12]">
+                    Potential False Alarm
+                  </div>
+
+                  <h2 className="mt-1 text-sm font-semibold text-[#6e531b]">
+                    Review required before confirmation
+                  </h2>
+
+                  <p className="mt-2 max-w-2xl text-[10px] leading-5 text-[#806a3b]">
+                    {detection.falseAlarmReason}
+                  </p>
+
+                  <div className="mt-3 flex gap-2">
+                    {[
+                      "Cloud",
+                      "Shadow",
+                      "Seasonal Variation",
+                    ].map((reason) => (
+                      <span
+                        key={reason}
+                        className="rounded-md border border-[#ead9b3] bg-white/70 px-2.5 py-1 text-[9px] text-[#806a3b]"
+                      >
+                        {reason}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+
+              <button
+                onClick={() => setShowMask(!showMask)}
+                className="rounded-lg border border-[#ddc98e] bg-white px-4 py-2 text-[10px] font-semibold text-[#8a681f]"
+              >
+                {showMask ? "Hide Mask" : "View Mask"}
+              </button>
+
+            </div>
+
+            {showMask && (
+              <div className="mt-4 rounded-xl border border-[#ead9b3] bg-[#f6e7b7] p-4 text-center text-[10px] font-semibold text-[#8a681f]">
+                Simulated false-alarm mask · cloud-affected region
+              </div>
+            )}
+          </section>
+
+          {/* Analyst Decision */}
+          <section className="mt-5 rounded-2xl border border-[#dce6f0] bg-white p-5">
+
+            <div className="flex items-center justify-between">
+
+              <div>
+                <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#71869b]">
+                  Analyst Decision
+                </div>
+
+                <div className="mt-1 text-sm font-semibold text-[#16324f]">
+                  Validate detected construction
+                </div>
+              </div>
+
+              {decision && (
+                <span
+                  className={`rounded-full px-3 py-1 text-[9px] font-semibold ${
+                    decision === "confirmed"
+                      ? "bg-[#e5f7f0] text-[#15936d]"
+                      : "bg-[#fdeaea] text-[#c84845]"
+                  }`}
+                >
+                  {decision === "confirmed"
+                    ? "Confirmed"
+                    : "Rejected"}
+                </span>
+              )}
+
+            </div>
+
+            <div className="mt-4 flex gap-3">
+
+              <button
+                onClick={() => setDecision("confirmed")}
+                className="rounded-lg bg-[#18a67a] px-6 py-2.5 text-[10px] font-semibold text-white hover:bg-[#13946d]"
+              >
+                Confirm Change
+              </button>
+
+              <button
+                onClick={() => setDecision("rejected")}
+                className="rounded-lg border border-[#e1bcbc] bg-white px-6 py-2.5 text-[10px] font-semibold text-[#c84845] hover:bg-[#fff6f6]"
+              >
+                Reject
+              </button>
+
+              <button
+                onClick={() => router.push("/similar-locations")}
+                className="ml-auto rounded-lg border border-[#c9d9e8] bg-white px-5 py-2.5 text-[10px] font-semibold text-[#1677e8] hover:bg-[#f5f9fd]"
+              >
+                Find Similar Locations →
+              </button>
+
+            </div>
+
+            {decision === "confirmed" && (
+              <div className="mt-4 rounded-lg border border-[#bfe5d6] bg-[#f1fbf7] px-4 py-3 text-[10px] text-[#198363]">
+                Construction change confirmed by analyst. Investigation
+                can now continue to similar-location discovery.
+              </div>
+            )}
+
+            {decision === "rejected" && (
+              <div className="mt-4 rounded-lg border border-[#edcccc] bg-[#fff6f6] px-4 py-3 text-[10px] text-[#b94a47]">
+                Detection rejected and marked for review.
+              </div>
+            )}
+
+          </section>
+
         </div>
       </section>
     </main>
   );
 }
 
-/* ----------------------------- */
-/* Date field                     */
-/* ----------------------------- */
-
-function DateField({
+function Field({
   label,
   value,
 }: {
@@ -507,55 +483,49 @@ function DateField({
 }) {
   return (
     <div>
-      <label className="mb-1.5 block text-[9px] font-semibold uppercase tracking-[0.14em] text-[#71869b]">
+      <div className="mb-2 text-[9px] font-semibold uppercase tracking-[0.18em] text-[#71869b]">
         {label}
-      </label>
+      </div>
 
-      <div className="flex h-11 items-center rounded-lg border border-[#dce6f0] bg-[#f9fbfd] px-3 text-xs font-medium text-[#496784]">
+      <div className="flex h-[55px] items-center rounded-lg border border-[#d8e4ef] bg-[#f9fbfd] px-4 text-sm text-[#496784]">
         {value}
       </div>
     </div>
   );
 }
 
-/* ----------------------------- */
-/* Image panel                    */
-/* ----------------------------- */
-
 function ImagePanel({
-  label,
+  title,
   date,
-  image,
+  src,
 }: {
-  label: string;
+  title: string;
   date: string;
-  image: string;
+  src: string;
 }) {
   return (
-    <div className="relative h-[480px] overflow-hidden bg-[#dfe8ef]">
-      <img
-        src={image}
-        alt={`${label} satellite imagery`}
-        className="absolute inset-0 h-full w-full object-cover"
-      />
+    <div className="overflow-hidden rounded-xl border border-[#dce6f0] bg-[#f8fbff]">
 
-      <div className="absolute left-4 top-4 rounded-md bg-[#163b67]/90 px-3 py-1.5 text-[9px] font-semibold text-white">
-        {label}
-      </div>
+      <div className="flex items-center justify-between border-b border-[#dce6f0] px-4 py-3">
 
-      <div className="absolute bottom-4 left-4 rounded-md bg-white/90 px-3 py-2 shadow-sm backdrop-blur">
-        <div className="text-[8px] uppercase tracking-wider text-[#71869b]">
-          Acquisition
+        <div className="text-[10px] font-semibold uppercase tracking-wider text-[#71869b]">
+          {title}
         </div>
 
-        <div className="mt-0.5 text-[10px] font-semibold text-[#16324f]">
+        <span className="rounded-md bg-white px-2 py-1 text-[9px] font-semibold text-[#496784]">
           {date}
-        </div>
+        </span>
+
       </div>
 
-      <div className="absolute right-4 top-4 rounded-md bg-white/90 px-2 py-1 text-[8px] font-semibold text-[#496784]">
-        Sentinel-2 · 10 m
+      <div className="h-[440px] bg-[#e9eff4]">
+        <img
+          src={src}
+          alt={`${title} satellite imagery from ${date}`}
+          className="h-full w-full object-cover"
+        />
       </div>
+
     </div>
   );
 }

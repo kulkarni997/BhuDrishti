@@ -4,6 +4,7 @@ import { useState } from "react";
 import Sidebar from "@/components/layout/Sidebar";
 import Topbar from "@/components/layout/Topbar";
 import { changeDetections } from "@/data/changeDetections";
+import { useRouter } from "next/navigation";
 
 export default function ChangeDetectionPage() {
   const detection = changeDetections[0];
@@ -17,6 +18,7 @@ export default function ChangeDetectionPage() {
   const [alignmentError, setAlignmentError] = useState(detection.alignmentError);
   const [showMask, setShowMask] = useState(false);
   const [confirmedAt, setConfirmedAt] = useState<string | null>(null);
+  const router = useRouter();
 
   return (
     <main className="min-h-screen bg-[#f4f8fc] text-[#16324f]">
@@ -430,6 +432,13 @@ export default function ChangeDetectionPage() {
         Change Confirmed
       </div>
 
+                  <button
+  onClick={() => router.push("/similar-locations")}
+  className="rounded-lg border border-[#cfe0f0] bg-white px-5 py-2.5 text-[10px] font-semibold text-[#1677e8] hover:border-[#9fc4ed] hover:bg-[#f7fbff]"
+>
+  Find Similar Locations →
+</button>
+      
       <div className="mt-1 text-[9px] text-[#4e806f]">
         Construction — {detection.changes[0].confidence}% confidence
       </div>

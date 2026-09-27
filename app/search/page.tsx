@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { searchResults } from "@/data/searchResults";
 import Sidebar from "@/components/layout/Sidebar";
 import Topbar from "@/components/layout/Topbar";
+import { saveInvestigation } from "@/lib/investigation";
 
 export default function SearchPage() {
   const router = useRouter();
@@ -120,7 +121,16 @@ export default function SearchPage() {
               return (
                 <button
                   key={result.id}
-                  onClick={() => setSelectedId(result.id)}
+                  onClick={() => {
+  setSelectedId(result.id);
+
+  saveInvestigation({
+    siteId: result.id,
+    location: result.location,
+    changeType: result.changeType,
+    confidence: result.confidence,
+  });
+}}
                   className={`group rounded-2xl border bg-white p-4 text-left shadow-sm transition-all ${
                     selected
                       ? "border-[#1677e8] shadow-md"

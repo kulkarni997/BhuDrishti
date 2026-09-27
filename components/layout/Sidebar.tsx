@@ -4,32 +4,53 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navigation = [
-  { label: "Dashboard", href: "/dashboard", icon: "⌂" },
-  { label: "Semantic Search", href: "/search", icon: "⌕" },
-  { label: "Change Detection", href: "/change-detection", icon: "◈" },
-  { label: "Map", href: "/map", icon: "◇" },
-  { label: "Audit Trail", href: "/audit-trail", icon: "≡" },
+  {
+    name: "Dashboard",
+    href: "/dashboard",
+    icon: "⌂",
+  },
+  {
+    name: "Semantic Search",
+    href: "/search",
+    icon: "⌕",
+  },
+  {
+    name: "Change Detection",
+    href: "/change-detection",
+    icon: "◇",
+  },
+  {
+    name: "Map",
+    href: "/map",
+    icon: "▱",
+  },
+  {
+    name: "Audit Trail",
+    href: "/audit-trail",
+    icon: "▤",
+  },
 ];
 
 export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r border-[#1d2a34] bg-[#0a1016]">
-      {/* Brand */}
-      <div className="flex h-20 items-center border-b border-[#1d2a34] px-6">
-        <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#263640] bg-[#0d141b]">
-            <div className="h-4 w-4 rounded-full border border-[#66d9c4]">
-              <div className="mx-auto mt-[5px] h-1 w-1 rounded-full bg-[#66d9c4]" />
+    <aside className="fixed left-0 top-0 z-40 flex h-screen w-64 flex-col border-r border-[#dbe5f0] bg-white">
+      {/* Logo */}
+      <div className="flex h-24 items-center border-b border-[#dbe5f0] px-7">
+        <div className="flex items-center gap-4">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[#cfe0f5] bg-[#f7fbff]">
+            <div className="relative flex h-5 w-5 items-center justify-center rounded-full border-2 border-[#1677e8]">
+              <span className="h-2 w-2 rounded-full bg-[#1677e8]" />
             </div>
           </div>
 
           <div>
-            <div className="text-sm font-semibold tracking-wide text-[#e8eef2]">
+            <div className="text-[20px] font-bold tracking-tight text-[#163b67]">
               BhuDrishti
             </div>
-            <div className="text-[9px] uppercase tracking-[0.16em] text-[#52616c]">
+
+            <div className="mt-0.5 text-[9px] font-medium uppercase tracking-[0.18em] text-[#71839a]">
               Geospatial Intelligence
             </div>
           </div>
@@ -37,60 +58,56 @@ export default function Sidebar() {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 px-3 py-5">
-        <div className="mb-3 px-3 text-[9px] font-medium uppercase tracking-[0.18em] text-[#52616c]">
+      <div className="px-4 pt-7">
+        <div className="mb-4 px-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#71839a]">
           Analyst Workspace
         </div>
 
-        <div className="space-y-1">
+        <nav className="space-y-2">
           {navigation.map((item) => {
-            const active =
-              pathname === item.href ||
-              (item.href !== "/dashboard" &&
-                pathname.startsWith(item.href));
+            const active = pathname === item.href;
 
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`group flex items-center gap-3 rounded-lg px-3 py-3 text-xs ${
+                className={`group flex h-12 items-center gap-4 rounded-lg px-4 text-sm font-medium ${
                   active
-                    ? "border border-[#24534d] bg-[#66d9c4]/10 text-[#66d9c4]"
-                    : "border border-transparent text-[#7f909d] hover:bg-[#111b24] hover:text-[#d7e1e5]"
+                    ? "bg-[#eaf3ff] text-[#1677e8]"
+                    : "text-[#496784] hover:bg-[#f4f8fd] hover:text-[#163b67]"
                 }`}
               >
                 <span
-                  className={`flex h-5 w-5 items-center justify-center text-sm ${
-                    active
-                      ? "text-[#66d9c4]"
-                      : "text-[#52616c] group-hover:text-[#9aa9b0]"
+                  className={`flex w-5 justify-center text-lg ${
+                    active ? "text-[#1677e8]" : "text-[#55738f]"
                   }`}
                 >
                   {item.icon}
                 </span>
 
-                <span>{item.label}</span>
+                <span>{item.name}</span>
 
                 {active && (
-                  <span className="ml-auto h-1.5 w-1.5 rounded-full bg-[#66d9c4]" />
+                  <span className="ml-auto h-2 w-2 rounded-full bg-[#1677e8]" />
                 )}
               </Link>
             );
           })}
-        </div>
-      </nav>
+        </nav>
+      </div>
 
-      {/* System status */}
-      <div className="border-t border-[#1d2a34] p-4">
-        <div className="rounded-lg border border-[#1d2a34] bg-[#0d141b] p-3">
+      {/* Bottom status */}
+      <div className="mt-auto border-t border-[#dbe5f0] p-5">
+        <div className="rounded-xl border border-[#dbe5f0] bg-[#f8fbff] p-4">
           <div className="flex items-center gap-2">
-            <span className="detection-pulse h-2 w-2 rounded-full bg-[#66d9c4]" />
-            <span className="text-[10px] font-medium text-[#d7e1e5]">
+            <span className="h-2 w-2 rounded-full bg-[#12a879]" />
+
+            <span className="text-xs font-semibold text-[#163b67]">
               System Online
             </span>
           </div>
 
-          <div className="mt-2 text-[9px] leading-relaxed text-[#52616c]">
+          <div className="mt-2 text-[10px] text-[#71839a]">
             Local demonstration environment
           </div>
         </div>

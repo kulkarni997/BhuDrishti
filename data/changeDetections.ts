@@ -2,8 +2,8 @@ export const changeDetections = [
   {
     id: "change-001",
     siteId: "site-001",
-    beforeDate: "Jan 2024",
-    afterDate: "Jan 2026",
+    beforeDate: "Jan 2021",
+    afterDate: "Jan 2025",
     changeCount: 3,
     changes: [
       {

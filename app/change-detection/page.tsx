@@ -1,380 +1,479 @@
 "use client";
 
 import { useState } from "react";
+import Sidebar from "@/components/layout/Sidebar";
+import Topbar from "@/components/layout/Topbar";
 import { changeDetections } from "@/data/changeDetections";
 
 export default function ChangeDetectionPage() {
   const detection = changeDetections[0];
 
-  const [beforeDate, setBeforeDate] = useState("Jan 2024");
-  const [afterDate, setAfterDate] = useState("Jan 2026");
   const [compared, setCompared] = useState(false);
-  const [selectedChange, setSelectedChange] = useState("Construction");
-
-  const handleCompare = () => {
-    setCompared(false);
-
-    setTimeout(() => {
-      setCompared(true);
-    }, 500);
-  };
-
-  const activeChange = detection.changes.find(
-    (change) => change.type === selectedChange
+  const [viewMode, setViewMode] = useState<"side-by-side" | "overlay">(
+    "side-by-side"
   );
+  const [opacity, setOpacity] = useState(50);
+  const [confirmed, setConfirmed] = useState(false);
+  const [aligning, setAligning] = useState(false);
+const [aligned, setAligned] = useState(false);
+const [alignmentError, setAlignmentError] = useState(
+  detection.alignmentError
+);
 
   return (
-    <div className="animate-fade-up">
-      {/* Header */}
-      <div className="mb-7">
-        <div className="text-[10px] uppercase tracking-[0.2em] text-[#66d9c4]">
-          Multi-Temporal Analysis
-        </div>
+    <main className="min-h-screen bg-[#f4f8fc] text-[#16324f]">
+      <Sidebar />
+      <Topbar />
 
-        <h1 className="mt-2 text-2xl font-semibold tracking-tight">
-          Change Detection
-        </h1>
+      <section className="ml-64 pt-20">
+        <div className="p-7">
+          {/* Header */}
+          <div className="mb-6 flex items-end justify-between">
+            <div>
+              <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#71869b]">
+                Analyst Workspace
+              </div>
 
-        <p className="mt-2 text-sm text-[#7f909d]">
-          Compare satellite imagery across time to identify meaningful
-          changes.
-        </p>
-      </div>
+              <h1 className="mt-2 text-2xl font-semibold tracking-tight text-[#16324f]">
+                Change Detection
+              </h1>
 
-      {/* Analysis controls */}
-      <section className="rounded-xl border border-[#1d2a34] bg-[#0d141b] p-5">
-        <div className="grid grid-cols-[1fr_auto_1fr_auto] items-end gap-4">
-          <DateField
-            label="Before"
-            value={beforeDate}
-            onChange={setBeforeDate}
-          />
-
-          <div className="pb-3 text-[#52616c]">→</div>
-
-          <DateField
-            label="After"
-            value={afterDate}
-            onChange={setAfterDate}
-          />
-
-          <button
-            onClick={handleCompare}
-            className="rounded-lg bg-[#66d9c4] px-7 py-3 text-xs font-semibold text-[#07100f] hover:opacity-90"
-          >
-            Compare Images
-          </button>
-        </div>
-
-        <div className="mt-5 flex items-center gap-4 border-t border-[#1d2a34] pt-4">
-          <div className="text-[9px] uppercase tracking-wider text-[#52616c]">
-            Area of Interest
-          </div>
-
-          <div className="rounded-md border border-[#263640] bg-[#080d12] px-3 py-1.5 text-[10px] text-[#d7e1e5]">
-            Narmada Basin — Sector A
-          </div>
-
-          <div className="text-[10px] text-[#52616c]">
-            22.7200° N · 73.1200° E
-          </div>
-        </div>
-      </section>
-
-      {/* Before / After */}
-      <div className="mt-6 grid grid-cols-2 gap-5">
-        <ImagePanel
-          label="Before"
-          date={beforeDate}
-          variant="before"
-        />
-
-        <ImagePanel
-          label="After"
-          date={afterDate}
-          variant="after"
-          compared={compared}
-        />
-      </div>
-
-      {/* Results */}
-      <section
-        className={`mt-6 rounded-xl border border-[#1d2a34] bg-[#0d141b] transition-opacity duration-500 ${
-          compared ? "opacity-100" : "opacity-60"
-        }`}
-      >
-        <div className="flex items-center justify-between border-b border-[#1d2a34] px-5 py-4">
-          <div>
-            <div className="text-sm font-medium">
-              Detected Changes
+              <p className="mt-1 text-sm text-[#71869b]">
+                Compare multi-temporal imagery and review detected changes.
+              </p>
             </div>
 
-            <div className="mt-1 text-[10px] text-[#52616c]">
-              {compared
-                ? `${detection.changeCount} significant changes identified`
-                : "Run comparison to analyze imagery"}
+            <div className="rounded-lg border border-[#dce6f0] bg-white px-4 py-2">
+              <div className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#71869b]">
+                Selected Area
+              </div>
+
+              <div className="mt-1 text-xs font-semibold text-[#163b67]">
+                Narmada Basin — Sector A
+              </div>
             </div>
           </div>
 
-          {compared && (
-            <span className="rounded-md border border-[#66d9c4]/30 bg-[#66d9c4]/5 px-3 py-1.5 text-[10px] text-[#66d9c4]">
-              Analysis Complete
-            </span>
-          )}
-        </div>
+          {/* Area + dates */}
+          <section className="mb-5 rounded-2xl border border-[#dce6f0] bg-white p-5">
+            <div className="grid grid-cols-[1.4fr_1fr_1fr_auto] items-end gap-4">
+              <div>
+                <label className="mb-1.5 block text-[9px] font-semibold uppercase tracking-[0.14em] text-[#71869b]">
+                  Area of Interest
+                </label>
 
-        <div className="grid grid-cols-3 divide-x divide-[#1d2a34]">
-          {detection.changes.map((change) => {
-            const selected = selectedChange === change.type;
+                <div className="flex h-11 items-center rounded-lg border border-[#dce6f0] bg-[#f9fbfd] px-3 text-xs font-medium text-[#496784]">
+                  Narmada Basin — Sector A
+                </div>
+              </div>
 
-            return (
+              <DateField label="Before Date" value="Jan 2024" />
+              <DateField label="After Date" value="Jan 2026" />
+
               <button
-                key={change.type}
-                onClick={() => setSelectedChange(change.type)}
-                className={`p-5 text-left transition-colors ${
-                  selected
-                    ? "bg-[#66d9c4]/5"
-                    : "hover:bg-[#111b24]"
-                }`}
+                onClick={() => setCompared(true)}
+                className="h-11 rounded-lg bg-[#1677e8] px-7 text-xs font-semibold text-white hover:bg-[#1268cf]"
               >
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-[#d7e1e5]">
-                    {change.type}
-                  </span>
+                {compared ? "Compared" : "Compare"}
+              </button>
+            </div>
+          </section>
 
-                  <span className="text-sm font-semibold text-[#66d9c4]">
-                    {change.confidence}%
-                  </span>
+          {/* Imagery comparison */}
+          <section className="mb-5 overflow-hidden rounded-2xl border border-[#dce6f0] bg-white">
+            <div className="flex h-14 items-center justify-between border-b border-[#dce6f0] px-5">
+              <div>
+                <div className="text-xs font-semibold text-[#16324f]">
+                  Temporal Comparison
                 </div>
 
-                <div className="mt-3 h-1 overflow-hidden rounded-full bg-[#1d2a34]">
-                  <div
-                    className="h-full bg-[#66d9c4] transition-all duration-700"
-                    style={{ width: `${change.confidence}%` }}
+                <div className="mt-0.5 text-[10px] text-[#71869b]">
+                  Satellite imagery comparison for the selected AOI
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setViewMode("side-by-side")}
+                  className={`rounded-md px-3 py-1.5 text-[10px] font-semibold ${
+                    viewMode === "side-by-side"
+                      ? "bg-[#eaf3ff] text-[#1677e8]"
+                      : "text-[#71869b]"
+                  }`}
+                >
+                  Before / After
+                </button>
+
+                <button
+                  onClick={() => setViewMode("overlay")}
+                  className={`rounded-md px-3 py-1.5 text-[10px] font-semibold ${
+                    viewMode === "overlay"
+                      ? "bg-[#eaf3ff] text-[#1677e8]"
+                      : "text-[#71869b]"
+                  }`}
+                >
+                  Overlay
+                </button>
+              </div>
+            </div>
+
+            {viewMode === "side-by-side" ? (
+              <div className="grid grid-cols-2 gap-px bg-[#dce6f0]">
+                <ImagePanel
+  label="BEFORE"
+  date="2021"
+  image="/satellite/before/2021.png"
+/>
+
+                <ImagePanel
+  label="AFTER"
+  date="2025"
+  image="/satellite/after/2025.png"
+/>
+              </div>
+            ) : (
+              <div className="relative h-[480px] overflow-hidden bg-[#dfe8ef]">
+                <img
+                  src="/satellite/base-map.png"
+                  alt="Before satellite imagery"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+
+                <div
+                  className="absolute inset-0 overflow-hidden"
+                  style={{ width: `${opacity}%` }}
+                >
+                  <img
+                    src="/satellite/base-map.png"
+                    alt="After satellite imagery"
+                    className="h-full w-full max-w-none object-cover"
+                    style={{
+                      width: `${100 / (opacity / 100)}%`,
+                    }}
                   />
                 </div>
 
-                <div className="mt-3 text-[10px] text-[#52616c]">
-                  Affected area · {change.area}
+                <div className="absolute left-1/2 top-0 h-full w-px bg-white shadow-md" />
+
+                <div className="absolute left-5 top-5 rounded-md bg-[#163b67]/90 px-3 py-1.5 text-[9px] font-semibold text-white">
+                  BEFORE / AFTER OVERLAY
                 </div>
-              </button>
-            );
-          })}
+
+                <div className="absolute bottom-5 left-1/2 w-[300px] -translate-x-1/2 rounded-xl bg-white/95 p-4 shadow-lg backdrop-blur">
+                  <div className="flex justify-between text-[9px] font-semibold uppercase tracking-wider text-[#71869b]">
+                    <span>Before</span>
+                    <span>After</span>
+                  </div>
+
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value={opacity}
+                    onChange={(e) => setOpacity(Number(e.target.value))}
+                    className="mt-3 w-full"
+                  />
+                </div>
+              </div>
+            )}
+
+            <div className="flex items-center justify-between border-t border-[#dce6f0] px-5 py-3">
+              <div className="flex items-center gap-5 text-[9px] text-[#71869b]">
+                <span>
+                  Sensor:{" "}
+                  <strong className="text-[#496784]">Sentinel-2</strong>
+                </span>
+
+                <span>
+                  Resolution:{" "}
+                  <strong className="text-[#496784]">10 m</strong>
+                </span>
+              </div>
+
+              <div className="text-[9px] text-[#71869b]">
+                Alignment error:{" "}
+                <strong className="text-[#e3a52f]">
+                  {detection.alignmentError} px
+                </strong>
+              </div>
+            </div>
+          </section>
+
+          {/* Bottom analysis */}
+          <div className="grid grid-cols-[1fr_370px] gap-5">
+            {/* Detected changes */}
+            <section className="rounded-2xl border border-[#dce6f0] bg-white p-5">
+              <div className="mb-5 flex items-center justify-between">
+                <div>
+                  <div className="text-xs font-semibold text-[#16324f]">
+                    Detected Changes
+                  </div>
+
+                  <div className="mt-1 text-[10px] text-[#71869b]">
+                    Candidate changes identified between the two dates.
+                  </div>
+                </div>
+
+                <div
+                  className={`rounded-full px-3 py-1.5 text-[9px] font-semibold ${
+                    compared
+                      ? "bg-[#edf8f4] text-[#15906b]"
+                      : "bg-[#f3f6f9] text-[#71869b]"
+                  }`}
+                >
+                  {compared ? "Analysis Complete" : "Awaiting Comparison"}
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                {detection.changes.map((change) => (
+                  <div
+                    key={change.type}
+                    className="rounded-xl border border-[#e2eaf1] bg-[#fbfdff] p-4"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="text-xs font-semibold text-[#16324f]">
+                          {change.type}
+                        </div>
+
+                        <div className="mt-1 text-[10px] text-[#71869b]">
+                          Estimated affected area: {change.area}
+                        </div>
+                      </div>
+
+                      <div className="text-right">
+                        <div className="text-base font-bold text-[#1677e8]">
+                          {change.confidence}%
+                        </div>
+
+                        <div className="text-[8px] uppercase tracking-wider text-[#8a9bac]">
+                          confidence
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[#eaf0f5]">
+                      <div
+                        className="h-full rounded-full bg-[#1677e8]"
+                        style={{ width: `${change.confidence}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Review panel */}
+            <section className="space-y-5">
+              {/* Registration */}
+<div className="rounded-2xl border border-[#dce6f0] bg-white p-5">
+  <div className="flex items-start justify-between">
+    <div>
+      <div className="text-xs font-semibold text-[#16324f]">
+        Image Registration
+      </div>
+
+      <div className="mt-1 text-[10px] text-[#71869b]">
+        Spatial alignment between temporal images.
+      </div>
+    </div>
+
+    <div
+      className={`rounded-full px-2.5 py-1 text-[9px] font-semibold ${
+        aligned
+          ? "bg-[#edf8f4] text-[#15906b]"
+          : "bg-[#fff7e7] text-[#b47a18]"
+      }`}
+    >
+      {aligned ? "Aligned" : "Review"}
+    </div>
+  </div>
+
+  <div className="mt-4 rounded-xl bg-[#f8fafc] p-3">
+    <div className="flex items-center justify-between">
+      <span className="text-[10px] text-[#71869b]">
+        Alignment error
+      </span>
+
+      <span
+        className={`text-xs font-bold ${
+          aligned ? "text-[#15906b]" : "text-[#b47a18]"
+        }`}
+      >
+        {alignmentError} px
+      </span>
+    </div>
+
+    <button
+      disabled={aligning || aligned}
+      onClick={() => {
+        setAligning(true);
+
+        setTimeout(() => {
+          setAlignmentError(0.8);
+          setAligned(true);
+          setAligning(false);
+        }, 1500);
+      }}
+      className={`mt-3 w-full rounded-lg border py-2 text-[10px] font-semibold ${
+        aligned
+          ? "border-[#bfe3d5] bg-[#edf8f4] text-[#15906b]"
+          : "border-[#cdddea] bg-white text-[#1677e8] hover:bg-[#f7fbff]"
+      }`}
+    >
+      {aligning
+        ? "Aligning Images..."
+        : aligned
+          ? "Images Aligned"
+          : "Auto Align Images"}
+    </button>
+  </div>
+</div>
+
+              {/* False alarm */}
+              <div className="rounded-2xl border border-[#eadfca] bg-[#fffdf8] p-5">
+                <div className="flex items-start gap-3">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#fff1cf] text-sm text-[#b47a18]">
+                    !
+                  </div>
+
+                  <div>
+                    <div className="text-xs font-semibold text-[#684f20]">
+                      Potential False Alarm
+                    </div>
+
+                    <div className="mt-1 text-[10px] leading-4 text-[#806d4a]">
+                      {detection.falseAlarmReason}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-4 rounded-lg border border-[#eadfca] bg-white p-3">
+                  <div className="text-[9px] font-semibold uppercase tracking-wider text-[#8d7955]">
+                    Risk Level
+                  </div>
+
+                  <div className="mt-1 text-xs font-bold uppercase text-[#b47a18]">
+                    {detection.falseAlarmRisk}
+                  </div>
+                </div>
+
+                <div className="mt-4 grid grid-cols-2 gap-2">
+                  <button className="rounded-lg border border-[#d7cdbb] bg-white py-2 text-[10px] font-semibold text-[#684f20]">
+                    Review Images
+                  </button>
+
+                  <button className="rounded-lg border border-[#d7cdbb] bg-white py-2 text-[10px] font-semibold text-[#684f20]">
+                    View Mask
+                  </button>
+                </div>
+              </div>
+
+              {/* Decision */}
+              <div className="rounded-2xl border border-[#dce6f0] bg-white p-5">
+                <div className="text-xs font-semibold text-[#16324f]">
+                  Analyst Decision
+                </div>
+
+                <div className="mt-1 text-[10px] text-[#71869b]">
+                  Record the review outcome for this detection.
+                </div>
+
+                {confirmed ? (
+                  <div className="mt-4 rounded-xl bg-[#edf8f4] p-4 text-center">
+                    <div className="text-xs font-semibold text-[#15906b]">
+                      Change Confirmed
+                    </div>
+
+                    <div className="mt-1 text-[9px] text-[#4e806f]">
+                      Construction detection recorded for review.
+                    </div>
+                  </div>
+                ) : (
+                  <div className="mt-4 grid grid-cols-2 gap-2">
+                    <button
+                      onClick={() => setConfirmed(true)}
+                      className="rounded-lg bg-[#15906b] py-2.5 text-[10px] font-semibold text-white hover:bg-[#11845f]"
+                    >
+                      Confirm Change
+                    </button>
+
+                    <button className="rounded-lg border border-[#dce6f0] bg-white py-2.5 text-[10px] font-semibold text-[#71869b] hover:bg-[#f8fafc]">
+                      Reject
+                    </button>
+                  </div>
+                )}
+              </div>
+            </section>
+          </div>
         </div>
       </section>
-
-      {/* Selected change analysis */}
-      {compared && activeChange && (
-        <section className="mt-5 grid grid-cols-[1fr_300px] gap-5 animate-fade-up">
-          <div className="rounded-xl border border-[#1d2a34] bg-[#0d141b] p-5">
-            <div className="text-[9px] uppercase tracking-[0.18em] text-[#66d9c4]">
-              Selected Detection
-            </div>
-
-            <h2 className="mt-2 text-lg font-medium">
-              {activeChange.type}
-            </h2>
-
-            <p className="mt-2 text-xs leading-6 text-[#7f909d]">
-              Change detected between {beforeDate} and {afterDate}
-              within the selected area of interest.
-            </p>
-
-            <div className="mt-5 grid grid-cols-3 gap-3">
-              <Metric
-                label="Confidence"
-                value={`${activeChange.confidence}%`}
-              />
-
-              <Metric
-                label="Affected Area"
-                value={activeChange.area}
-              />
-
-              <Metric
-                label="Risk"
-                value={
-                  detection.falseAlarmRisk.charAt(0).toUpperCase() +
-                  detection.falseAlarmRisk.slice(1)
-                }
-              />
-            </div>
-          </div>
-
-          {/* False alarm */}
-          <div className="rounded-xl border border-[#e6b866]/30 bg-[#0d141b] p-5">
-            <div className="flex items-center justify-between">
-              <span className="text-[9px] uppercase tracking-[0.18em] text-[#e6b866]">
-                Review Required
-              </span>
-
-              <span className="rounded border border-[#e6b866]/30 px-2 py-1 text-[9px] text-[#e6b866]">
-                {detection.falseAlarmRisk.toUpperCase()}
-              </span>
-            </div>
-
-            <h3 className="mt-4 text-sm font-medium">
-              Potential False Alarm
-            </h3>
-
-            <p className="mt-2 text-[10px] leading-5 text-[#7f909d]">
-              {detection.falseAlarmReason}
-            </p>
-
-            <div className="mt-4 flex gap-2">
-              <button className="flex-1 rounded-md border border-[#263640] px-3 py-2 text-[10px] text-[#7f909d] hover:text-[#d7e1e5]">
-                Review
-              </button>
-
-              <button className="flex-1 rounded-md bg-[#66d9c4] px-3 py-2 text-[10px] font-semibold text-[#07100f] hover:opacity-90">
-                Continue
-              </button>
-            </div>
-          </div>
-        </section>
-      )}
-    </div>
+    </main>
   );
 }
+
+/* ----------------------------- */
+/* Date field                     */
+/* ----------------------------- */
 
 function DateField({
   label,
   value,
-  onChange,
 }: {
   label: string;
   value: string;
-  onChange: (value: string) => void;
 }) {
   return (
     <div>
-      <label className="mb-2 block text-[9px] uppercase tracking-wider text-[#52616c]">
-        {label} Date
+      <label className="mb-1.5 block text-[9px] font-semibold uppercase tracking-[0.14em] text-[#71869b]">
+        {label}
       </label>
 
-      <select
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-lg border border-[#26343e] bg-[#080d12] px-4 py-3 text-xs text-[#d7e1e5] outline-none focus:border-[#66d9c4]"
-      >
-        <option>Jan 2024</option>
-        <option>Jun 2024</option>
-        <option>Jan 2025</option>
-        <option>Jan 2026</option>
-        <option>Mar 2026</option>
-      </select>
+      <div className="flex h-11 items-center rounded-lg border border-[#dce6f0] bg-[#f9fbfd] px-3 text-xs font-medium text-[#496784]">
+        {value}
+      </div>
     </div>
   );
 }
+
+/* ----------------------------- */
+/* Image panel                    */
+/* ----------------------------- */
 
 function ImagePanel({
   label,
   date,
-  variant,
-  compared = false,
+  image,
 }: {
   label: string;
   date: string;
-  variant: "before" | "after";
-  compared?: boolean;
+  image: string;
 }) {
   return (
-    <div className="overflow-hidden rounded-xl border border-[#1d2a34] bg-[#0d141b]">
-      <div className="flex items-center justify-between border-b border-[#1d2a34] px-4 py-3">
-        <div>
-          <span className="text-xs font-medium">{label}</span>
-          <span className="ml-2 text-[10px] text-[#52616c]">
-            {date}
-          </span>
-        </div>
+    <div className="relative h-[480px] overflow-hidden bg-[#dfe8ef]">
+      <img
+        src={image}
+        alt={`${label} satellite imagery`}
+        className="absolute inset-0 h-full w-full object-cover"
+      />
 
-        <span className="text-[9px] uppercase tracking-wider text-[#52616c]">
-          Sentinel-2
-        </span>
-      </div>
-
-      <div className="relative h-72 overflow-hidden bg-[#17251f]">
-        <SatelliteScene variant={variant} />
-
-        {variant === "after" && compared && (
-          <div className="absolute left-[47%] top-[39%] h-20 w-24 border border-[#e87979] bg-[#e87979]/10">
-            <span className="absolute -top-5 left-0 text-[8px] uppercase tracking-wider text-[#e87979]">
-              Detected Change
-            </span>
-          </div>
-        )}
-
-        <div className="absolute bottom-3 left-3 rounded bg-[#080d12]/80 px-2 py-1 text-[9px] text-[#7f909d]">
-          10 m resolution
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function SatelliteScene({
-  variant,
-}: {
-  variant: "before" | "after";
-}) {
-  return (
-    <div className="absolute inset-0">
-      <div className="absolute inset-0 bg-[#17251f]" />
-
-      <div className="absolute -left-20 top-12 h-60 w-[80%] rotate-12 rounded-[50%] bg-[#24362b]" />
-      <div className="absolute right-[-30px] top-[-30px] h-[120%] w-28 rotate-[22deg] rounded-[50%] bg-[#183034]" />
-
-      {/* Roads */}
-      <div className="absolute left-[-10%] top-[58%] h-[2px] w-[120%] rotate-[10deg] bg-[#73766b]/50" />
-      <div className="absolute left-[30%] top-[-10%] h-[120%] w-[2px] rotate-[35deg] bg-[#73766b]/40" />
-
-      {/* Existing structures */}
-      <div className="absolute left-[48%] top-[43%] grid grid-cols-3 gap-1">
-        {Array.from({ length: variant === "before" ? 6 : 12 }).map(
-          (_, index) => (
-            <span
-              key={index}
-              className="h-3 w-3 bg-[#999b83]"
-            />
-          )
-        )}
-      </div>
-
-      {/* New road / development */}
-      {variant === "after" && (
-        <div className="absolute left-[38%] top-[56%] h-1 w-32 rotate-[8deg] bg-[#9b9b83]/70" />
-      )}
-
-      {/* Scan grid */}
-      <div className="absolute inset-0 opacity-20">
-        <div
-          className="h-full w-full"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.25) 1px, transparent 1px)",
-            backgroundSize: "45px 45px",
-          }}
-        />
-      </div>
-    </div>
-  );
-}
-
-function Metric({
-  label,
-  value,
-}: {
-  label: string;
-  value: string;
-}) {
-  return (
-    <div className="rounded-lg border border-[#1d2a34] bg-[#080d12] p-3">
-      <div className="text-[8px] uppercase tracking-wider text-[#52616c]">
+      <div className="absolute left-4 top-4 rounded-md bg-[#163b67]/90 px-3 py-1.5 text-[9px] font-semibold text-white">
         {label}
       </div>
 
-      <div className="mt-2 text-xs text-[#d7e1e5]">
-        {value}
+      <div className="absolute bottom-4 left-4 rounded-md bg-white/90 px-3 py-2 shadow-sm backdrop-blur">
+        <div className="text-[8px] uppercase tracking-wider text-[#71869b]">
+          Acquisition
+        </div>
+
+        <div className="mt-0.5 text-[10px] font-semibold text-[#16324f]">
+          {date}
+        </div>
+      </div>
+
+      <div className="absolute right-4 top-4 rounded-md bg-white/90 px-2 py-1 text-[8px] font-semibold text-[#496784]">
+        Sentinel-2 · 10 m
       </div>
     </div>
   );

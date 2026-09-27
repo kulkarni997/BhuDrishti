@@ -1,5 +1,5 @@
 {
+  "/change-detection/page": "app/change-detection/page.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/initializing/page": "app/initializing/page.js",
-  "/login/page": "app/login/page.js"
+  "/search/page": "app/search/page.js"
 }

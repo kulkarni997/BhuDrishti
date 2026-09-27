@@ -1,19 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #080d12;
-  --foreground: #e8eef2;
-
-  --panel: #0d141b;
-  --panel-hover: #111b24;
-  --border: #1d2a34;
-
-  --muted: #7f909d;
-  --accent: #66d9c4;
-  --accent-soft: rgba(102, 217, 196, 0.12);
-
-  --danger: #e87979;
-  --warning: #e6b866;
+  --background: #f4f8fc;
+  --foreground: #16324f;
+  --panel: #ffffff;
+  --border: #dce6f0;
+  --muted: #71869b;
+  --navy: #0b2d52;
+  --blue: #1976d2;
+  --blue-soft: #eaf3ff;
+  --green: #18a67a;
+  --warning: #e3a52f;
+  --danger: #d9534f;
 }
 
 * {
@@ -33,20 +31,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Subtle technical grid */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.025;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-/* Smooth UI interactions */
 button,
 a,
 input,
@@ -56,14 +40,18 @@ select {
     border-color 180ms ease,
     color 180ms ease,
     opacity 180ms ease,
-    transform 180ms ease;
+    transform 180ms ease,
+    box-shadow 180ms ease;
 }
 
 button {
   cursor: pointer;
 }
 
-/* Subtle entrance animation */
+button:hover {
+  transform: translateY(-1px);
+}
+
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -80,23 +68,21 @@ button {
   animation: fadeUp 400ms ease-out both;
 }
 
-/* Detection pulse */
-@keyframes detectionPulse {
+@keyframes markerPulse {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(102, 217, 196, 0.15);
+    box-shadow: 0 0 0 0 rgba(25, 118, 210, 0.2);
   }
 
   50% {
-    box-shadow: 0 0 0 7px rgba(102, 217, 196, 0);
+    box-shadow: 0 0 0 8px rgba(25, 118, 210, 0);
   }
 }
 
-.detection-pulse {
-  animation: detectionPulse 2.5s ease-in-out infinite;
+.marker-pulse {
+  animation: markerPulse 2.5s ease-in-out infinite;
 }
 
-/* Thin scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -106,10 +92,10 @@ button {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #26343e;
+  background: #c8d5e2;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #344650;
+  background: #aebfd0;
 }

@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+:root {
+  --background: #080d12;
+  --foreground: #e8eef2;
+
+  --panel: #0d141b;
+  --panel-hover: #111b24;
+  --border: #1d2a34;
+
+  --muted: #7f909d;
+  --accent: #66d9c4;
+  --accent-soft: rgba(102, 217, 196, 0.12);
+
+  --danger: #e87979;
+  --warning: #e6b866;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Subtle technical grid */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Smooth UI interactions */
+button,
+a,
+input,
+select {
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Subtle entrance animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 400ms ease-out both;
+}
+
+/* Detection pulse */
+@keyframes detectionPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(102, 217, 196, 0.15);
+  }
+
+  50% {
+    box-shadow: 0 0 0 7px rgba(102, 217, 196, 0);
+  }
+}
+
+.detection-pulse {
+  animation: detectionPulse 2.5s ease-in-out infinite;
+}
+
+/* Thin scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #26343e;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #344650;
+}

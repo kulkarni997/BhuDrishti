@@ -1,0 +1,38 @@
+export const similarLocations = [
+  {
+    id: "similar-001",
+    siteId: "site-001",
+    location: "River Corridor — Sector B",
+    coordinates: [22.76, 73.18],
+    similarity: 92,
+    sensor: "Sentinel-2",
+    date: "12 Feb 2026",
+  },
+  {
+    id: "similar-002",
+    siteId: "site-001",
+    location: "Industrial Zone — Sector C",
+    coordinates: [22.68, 73.22],
+    similarity: 89,
+    sensor: "Sentinel-2",
+    date: "08 Jan 2026",
+  },
+  {
+    id: "similar-003",
+    siteId: "site-001",
+    location: "River Corridor — Sector D",
+    coordinates: [22.81, 73.08],
+    similarity: 85,
+    sensor: "Landsat 9",
+    date: "21 Dec 2025",
+  },
+  {
+    id: "similar-004",
+    siteId: "site-001",
+    location: "Open Ground — Sector E",
+    coordinates: [22.64, 73.14],
+    similarity: 80,
+    sensor: "Sentinel-2",
+    date: "04 Jan 2026",
+  },
+];
